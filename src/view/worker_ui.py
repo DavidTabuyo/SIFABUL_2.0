@@ -56,13 +56,49 @@ class WorkerUi(object):
         self.btnChangePassword.setText(_translate("BECARIO", "CAMBIAR CONTRASEÑA"))
         self.btnResumen.setText(_translate("BECARIO", "VER RESUMEN"))
         self.refresh_btn.setText(_translate("BECARIO", "Recargar"))
+        
+    def addChecks(self,checks):
+        for object in checks:
+            label = QtWidgets.QLabel(object.get_output())
+            self.layoutFichajes.addWidget(label)
+            label.setAlignment(QtCore.Qt.AlignCenter)
+            label.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+            if object.is_entry:
+                label.setStyleSheet(
+                    'background-color: green;font-size: 20px;border-radius: 10px;')
+            else:
+                label.setStyleSheet(
+                    'background-color: red;font-size: 20px;border-radius: 10px;')
 
+    def clear_layout(self, layout):
+        # Borrar todos los widgets en el layout
+        while layout.count():
+            item = layout.takeAt(0)
+            widget = item.widget()
+            if widget:
+                widget.deleteLater()
+        if layout==self.layoutFichajes:    
+            check_label = QtWidgets.QLabel()
+            check_label.setText('Fichajes')
+            check_label.setAlignment(QtCore.Qt.AlignCenter)
+            check_label.setStyleSheet(
+                "QLabel {"
+                "   font-family: Decorative;"
+                "   font-size: 20px;"
+                "   color: black;"
+                "   background-color: #FFB6C1;" 
+                "}"
+            )     
+            layout.addWidget(check_label)
 
+                
+    
+    
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     BECARIO = QtWidgets.QMainWindow()
-    ui = Ui_BECARIO()
+    ui = WorkerUi()
     ui.setupUi(BECARIO)
     BECARIO.show()
     sys.exit(app.exec_())

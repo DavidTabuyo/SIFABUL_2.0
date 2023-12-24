@@ -54,5 +54,9 @@ class WorkerDao:
         ''', (worker_id, date)).fetchone()
         connection.close()
         return Check(*last_check) if last_check else None
+    
+    @staticmethod
+    def get_worker(worker_id:str)->Worker:
+        ...
 
 

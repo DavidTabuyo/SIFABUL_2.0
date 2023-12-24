@@ -8,6 +8,11 @@ class Worker:
 
     def get_output_for_list(self) ->str:
         return self.worker_id
+    
+    def getID(self) ->str:
+        return self.worker_id
+
+
 
     # def get_notificaciones(self) -> list[NotificacionBecario]:
     #     '''

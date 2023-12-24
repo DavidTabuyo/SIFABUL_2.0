@@ -16,9 +16,9 @@ class LoginController(QMainWindow):
     def BotonOk_clicked(self):
         # check if correct
         try:
-            self.main_controller.change_controller(self.login(self.view.UserName.text(), self.view.Password.text()))
-
+            self.main_controller.change_controller(self.login(self.view.UserName.text(), self.view.Password.text()),self.view.UserName.text())
         except Exception as e:
+            print(e)
             self.view.showError(e)
             
     
