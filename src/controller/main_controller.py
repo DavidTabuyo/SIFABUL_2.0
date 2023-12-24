@@ -3,7 +3,6 @@ from controller.change_password_controller import ChangePasswordController
 from controller.edit_worker_list_controller import EditWorkerListController
 from controller.login_controller import LoginController
 from controller.send_notification_controller import SendNotificationController
-from controller.summary_controller import SummaryController
 from controller.update_worker_controller import UpdateWorkerController
 from controller.worker_controller import WorkerController
 
@@ -16,7 +15,6 @@ class MainController:
         'changepassword': ChangePasswordController,
         'editworkerlist': EditWorkerListController,
         'sendnotification': SendNotificationController,
-        'sumary': SummaryController,
         'updateworker': UpdateWorkerController
     }
     
