@@ -90,6 +90,28 @@ class WorkerUi(object):
                 "}"
             )     
             layout.addWidget(check_label)
+            
+    def showError(self, e):
+            error_message = QtWidgets.QMessageBox()
+            error_message.setIcon(QtWidgets.QMessageBox.Critical)
+            error_message.setWindowTitle('Error')
+            error_message.setText(str(e))
+            error_message.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            error_message.exec_()
+            
+    def addNotifications(self,notList):
+        for i in notList:
+            label = QtWidgets.QLabel(i.get_output())
+            self.notifications_layout.addWidget(label)
+            label.setAlignment(QtCore.Qt.AlignCenter)
+            label.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+            if i.seen:
+                label.setStyleSheet(
+                    'background-color: green;font-size: 20px;border-radius: 10px;')
+            else:
+                label.setStyleSheet(
+                    'background-color: red;font-size: 20px;border-radius: 10px;')
+    
 
                 
     

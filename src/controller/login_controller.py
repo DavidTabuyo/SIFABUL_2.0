@@ -18,7 +18,6 @@ class LoginController(QMainWindow):
         try:
             self.main_controller.change_controller(self.login(self.view.UserName.text(), self.view.Password.text()),self.view.UserName.text())
         except Exception as e:
-            print(e)
             self.view.showError(e)
             
     
@@ -46,7 +45,3 @@ class LoginController(QMainWindow):
             
         
     
-
-
-
-    #self.main_controller.change_controller('worker')

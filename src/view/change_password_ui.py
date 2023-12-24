@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_ChangePasswordWindow(object):
+class ChangePasswordUi(object):
     def setupUi(self, ChangePasswordWindow):
         ChangePasswordWindow.setObjectName("ChangePasswordWindow")
         ChangePasswordWindow.resize(555, 300)
@@ -92,6 +92,13 @@ class Ui_ChangePasswordWindow(object):
         self.cancel_btn.setText(_translate("ChangePasswordWindow", "Cancelar"))
         self.accept_btn.setText(_translate("ChangePasswordWindow", "Aceptar"))
 
+    def showError(self, e):
+            error_message = QtWidgets.QMessageBox()
+            error_message.setIcon(QtWidgets.QMessageBox.Critical)
+            error_message.setWindowTitle('Error')
+            error_message.setText(str(e))
+            error_message.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            error_message.exec_()
 
 if __name__ == "__main__":
     import sys

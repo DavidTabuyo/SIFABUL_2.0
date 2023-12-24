@@ -4,3 +4,6 @@ class User:
         self.name = name
         self.salt = salt
         self.hash = hash
+
+    def getId(self)->str:
+        return self.user_id
