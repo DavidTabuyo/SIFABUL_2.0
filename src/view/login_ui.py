@@ -12,9 +12,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QLineEdit, QMessageBox
 
 
-class Ui_MainWindow(object):
+class loginUI(object):
     def setupUi(self, MainWindow):
-        self.boton1.clicked.connect(self.button1_clicked)
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1011, 574)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -96,6 +95,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.addWidget(self.label_4)
         MainWindow.setCentralWidget(self.centralwidget)
         self.Password.setEchoMode(QLineEdit.Password)
+        self.boton1.clicked.connect(self.button1_clicked)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -117,7 +117,7 @@ class Ui_MainWindow(object):
         self.UserName.clear()
         self.Password.clear()
     
-    def showError(e):
+    def showError(self,e):
             mensaje_error = QMessageBox()
             mensaje_error.setIcon(QMessageBox.Critical)
             mensaje_error.setWindowTitle('Error')

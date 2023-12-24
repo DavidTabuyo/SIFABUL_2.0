@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_BECARIO(object):
+class WorkerUi(object):
     def setupUi(self, BECARIO):
         BECARIO.setObjectName("BECARIO")
         BECARIO.resize(800, 600)

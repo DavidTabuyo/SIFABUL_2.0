@@ -1,14 +1,14 @@
 from PyQt5.QtWidgets import QMainWindow
 import bcrypt
 from model.dao.user_dao import UserDao
-from view.login_ui import Ui_MainWindow
+from view.login_ui import loginUI
 
 class LoginController(QMainWindow):
     def __init__(self, main_controller) -> None:
         super().__init__()
         self.main_controller = main_controller
         #view
-        self.view = Ui_MainWindow()
+        self.view = loginUI()
         self.view.setupUi(self)
         self.view.BotonOk.clicked.connect(self.BotonOk_clicked)
 
@@ -18,13 +18,11 @@ class LoginController(QMainWindow):
         try:
             self.main_controller.change_controller(self.login(self.view.UserName.text(), self.view.Password.text()))
 
-            
-
         except Exception as e:
             self.view.showError(e)
             
     
-    def login(user_id: str, password: str) -> str:
+    def login(self, user_id: str, password: str) -> str:
 
         # Check if exists
         if UserDao.is_worker(user_id):
@@ -35,13 +33,13 @@ class LoginController(QMainWindow):
             raise LookupError('Usuario no encontrado')
 
         # Comprueba contraseña
-        if not check_password(user_id, password):
+        if not self.check_password(user_id, password):
             raise ValueError('Contraseña incorrecta')
 
         return type
 
 
-    def check_password(user_id: str, password: str) -> bool:
+    def check_password(self, user_id: str, password: str) -> bool:
         user = UserDao.get_user(user_id)
         return user.hash == bcrypt.hashpw(password.encode('utf-8'), user.salt)
 
