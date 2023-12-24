@@ -7,6 +7,6 @@ from controller.main_controller import MainController
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     main_controller = MainController()
-    main_controller.change_controller(LoginController)
+    main_controller.change_controller('login')
     sys.exit(app.exec())
     
