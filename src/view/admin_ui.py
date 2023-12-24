@@ -10,8 +10,11 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from model.notification import Notification
+from model.worker import Worker
 
-class Ui_MainWindow(object):
+
+class AdminUi(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -53,6 +56,37 @@ class Ui_MainWindow(object):
         self.change_password_btn.setText(_translate("MainWindow", "cambiar contraseña"))
         self.send_notification_btn.setText(_translate("MainWindow", "enviar notificacion"))
         self.update_btn.setText(_translate("MainWindow", "actualizar"))
+
+
+    def clear_layout(self, layout):
+        while layout.count():
+            item = layout.takeAt(0)
+            widget = item.widget()
+            if widget:
+                widget.deleteLater()
+                
+    def show_notifications(self, notList:list[Notification]):
+        for i in notList:
+            label = QtWidgets.QLabel(i.get_output())
+            self.notifications_layout.addWidget(label)
+            label.setAlignment(QtCore.Qt.AlignCenter)
+            label.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+            #if all workers has seen the notificarion
+            if i.is_seen:
+                label.setStyleSheet('background-color: green;font-size: 20px;border-radius: 10px;')
+            else:
+                label.setStyleSheet('background-color: red;font-size: 20px;border-radius: 10px;')
+
+    def show_workers(self,workerList:list[Worker]):
+        for worker in workerList:
+            boton = QtWidgets.QPushButton(worker.get_output_for_list(), self)
+            self.list_layout.addWidget(boton)
+            boton.setAlignment(QtCore.Qt.AlignCenter)
+            boton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+            boton.setStyleSheet('background-color: blue;font-size: 20px;border-radius: 10px;')
+            self.boton.clicked.connect(self.worker_btn_clicked(worker.worker_id))
+            
+        
 
 
 if __name__ == "__main__":
