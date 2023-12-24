@@ -3,3 +3,8 @@ class Week:
         self.worker_id = worker_id
         self.monday = monday
         self.total = total
+
+    def is_above_threshold(self)->bool:
+        if self.total<10:
+            return True
+        return False

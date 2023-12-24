@@ -18,3 +18,15 @@ INSERT INTO workers_notifications (notification_id, worker_id) VALUES
     (1, 'dmartm14'), (1, 'dtabum00'), (1, 'ogingd00'),
     (2, 'vtunog00'), (2, 'ogingd00'),
     (3, 'dmartm14'), (3, 'dtabum00'), (3, 'vtunog00'), (3, 'ogingd00');
+
+INSERT INTO weeks (worker_id, monday, total) VALUES
+    ('dtabum00', '2023-10-23', 10),
+    ('dtabum00', '2023-10-30', 9),
+    ('dtabum00', '2023-11-06', 11),
+    ('dtabum00', '2023-11-13', 12),
+    ('dtabum00', '2023-11-20', 10),
+    ('dtabum00', '2023-11-27', 15),
+    ('dtabum00', '2023-12-04', 4),
+    ('dtabum00', '2023-12-11', 3),
+    ('dtabum00', '2023-12-18', 10),
+    ('dtabum00', '2023-12-25', 10);

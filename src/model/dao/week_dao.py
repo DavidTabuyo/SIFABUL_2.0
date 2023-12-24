@@ -5,7 +5,15 @@ from model.week import Week
 class Weekdao:
     @staticmethod
     def get_weeks(worker_id: str) -> list[Week]:
-        ...
+        connection = sqlite3.connect('db/db.sqlite')
+        weeks = connection.execute('''
+            SELECT worker_id, monday, total
+            FROM weeks
+            WHERE worker_id = ?
+        ''', (worker_id,)).fetchall()
+        connection.close()
+
+        return [Week(*week) for week in weeks]
 
     @staticmethod
     def get_week(worker_id: str, monday: str) -> Week:

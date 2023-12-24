@@ -10,6 +10,10 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from model.week import Week
+import matplotlib.pyplot as plt
+from datetime import datetime, timedelta
+
 
 class WorkerUi(object):
     def setupUi(self, BECARIO):
@@ -112,8 +116,37 @@ class WorkerUi(object):
                 label.setStyleSheet(
                     'background-color: red;font-size: 20px;border-radius: 10px;')
     
+    def show_summary(self,weeks:list[Week]):
+        # Ordenar las semanas por fecha
+        weeks.sort(key=lambda x: datetime.strptime(x.monday, "%Y-%m-%d"))
 
-                
+        # Tomar las 10 últimas semanas
+        last_10_weeks = weeks[-10:]
+
+        # Crear listas de fechas y horas trabajadas
+        fechas = [(datetime.strptime(week.monday, "%Y-%m-%d") + timedelta(days=7)).strftime("%Y-%m-%d") for week in last_10_weeks]
+        horas_trabajadas = [week.total for week in last_10_weeks]
+
+        # Colores de las barras según la condición
+        colores = ['red' if week.is_above_threshold() else 'green' for week in last_10_weeks]
+
+        # Crear el gráfico de barras
+        plt.figure(figsize=(10, 6))
+        plt.bar(fechas, horas_trabajadas, color=colores, label='Horas trabajadas')
+        
+        # Línea roja de puntos en y=10
+        plt.axhline(y=10, color='r', linestyle='--', label='_nolegend_')
+
+        # Personalizar el gráfico
+        plt.title('Resumen semanal')
+        plt.ylabel('Horas trabajadas')
+        plt.xticks(rotation=45, ha='right')  # Rotar las fechas en el eje x
+        plt.legend()
+
+        # Mostrar el gráfico
+        plt.tight_layout()
+        plt.show()
+                    
     
     
 if __name__ == "__main__":

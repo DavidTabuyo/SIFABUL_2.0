@@ -49,8 +49,9 @@ class WorkerController(QMainWindow):
             self.view.showError(e)
     
     def btnResumen_clicked(self):
-        ...
-    
+        weeks=Weekdao.get_weeks(self.worker.worker_id)
+        self.view.show_summary(weeks)
+        
     def btnChangePassword_clicked(self):
         self.main_controller.change_controller('changepassword',self.worker.worker_id)
 
