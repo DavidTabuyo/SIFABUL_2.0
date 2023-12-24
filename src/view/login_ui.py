@@ -9,10 +9,12 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QLineEdit, QMessageBox
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        self.boton1.clicked.connect(self.button1_clicked)
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1011, 574)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -93,6 +95,7 @@ class Ui_MainWindow(object):
         self.label_4.setObjectName("label_4")
         self.verticalLayout_5.addWidget(self.label_4)
         MainWindow.setCentralWidget(self.centralwidget)
+        self.Password.setEchoMode(QLineEdit.Password)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -108,6 +111,20 @@ class Ui_MainWindow(object):
         self.BotonOk.setText(_translate("MainWindow", "Aceptar"))
         self.label_4.setStyleSheet(_translate("MainWindow", "color: #FFB6C1; border-radius: 20px;"))
         self.label_4.setText(_translate("MainWindow", "SISTEMA DE FICHAJES UNIVERSIDAD DE LEÓN"))
+
+    def button1_clicked(self):
+        #delete the content
+        self.UserName.clear()
+        self.Password.clear()
+    
+    def showError(e):
+            mensaje_error = QMessageBox()
+            mensaje_error.setIcon(QMessageBox.Critical)
+            mensaje_error.setWindowTitle('Error')
+            mensaje_error.setText(str(e))
+            mensaje_error.setStandardButtons(QMessageBox.Ok)
+            mensaje_error.exec_()
+
 
 
 if __name__ == "__main__":
