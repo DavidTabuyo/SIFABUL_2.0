@@ -92,6 +92,10 @@ class ChangePasswordUi(object):
         self.cancel_btn.setText(_translate("ChangePasswordWindow", "Cancelar"))
         self.accept_btn.setText(_translate("ChangePasswordWindow", "Aceptar"))
 
+    """START OWN CODE 
+    ---------------------------------------------------------------------------------------------------------------------------------------------------
+    """
+    
     def showError(self, e):
             error_message = QtWidgets.QMessageBox()
             error_message.setIcon(QtWidgets.QMessageBox.Critical)

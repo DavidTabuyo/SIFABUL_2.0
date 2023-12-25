@@ -57,6 +57,9 @@ class AdminUi(object):
         self.send_notification_btn.setText(_translate("MainWindow", "enviar notificacion"))
         self.update_btn.setText(_translate("MainWindow", "actualizar"))
 
+    """START OWN CODE 
+    ---------------------------------------------------------------------------------------------------------------------------------------------------
+    """
 
     def clear_layout(self, layout):
         while layout.count():

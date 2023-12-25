@@ -61,6 +61,11 @@ class WorkerUi(object):
         self.btnResumen.setText(_translate("BECARIO", "VER RESUMEN"))
         self.refresh_btn.setText(_translate("BECARIO", "Recargar"))
         
+        
+    """START OWN CODE 
+    ---------------------------------------------------------------------------------------------------------------------------------------------------
+    """
+        
     def addChecks(self,checks):
         for object in checks:
             label = QtWidgets.QLabel(object.get_output())

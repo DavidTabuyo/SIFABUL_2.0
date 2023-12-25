@@ -112,6 +112,10 @@ class loginUI(object):
         self.label_4.setStyleSheet(_translate("MainWindow", "color: #FFB6C1; border-radius: 20px;"))
         self.label_4.setText(_translate("MainWindow", "SISTEMA DE FICHAJES UNIVERSIDAD DE LEÓN"))
 
+        """START OWN CODE 
+    ---------------------------------------------------------------------------------------------------------------------------------------------------
+    """
+    
     def button1_clicked(self):
         #delete the content
         self.UserName.clear()
