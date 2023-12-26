@@ -8,3 +8,13 @@ class Week:
         if self.total<10:
             return True
         return False
+    
+    def get_total_hours(self)->float:
+        return self.total/3600
+    
+    def get_formatted_total(self):
+        hours, remainder = divmod(self.total, 3600)
+        minutes = remainder // 60
+        formatted_hours = f"{int(hours):02d} h"
+        formatted_minutes = f"{int(minutes):02d} min" if minutes > 0 else ""
+        return f"{formatted_hours} {formatted_minutes}"
