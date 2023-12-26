@@ -11,3 +11,5 @@ Revisar notifiaciones admin no tienen is_all_seen. Además, se muestran todas re
 AddWorker de adminDao
 
 AddWorker en addworker_controller
+
+AddNotification en SendNotificationController

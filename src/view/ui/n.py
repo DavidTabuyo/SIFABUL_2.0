@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class SendNotificationUi(object):
+class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(612, 295)
@@ -53,27 +53,3 @@ class SendNotificationUi(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.send_btn.setText(_translate("MainWindow", "Enviar"))
         self.cancel_btn.setText(_translate("MainWindow", "Cancelar"))
-
-
-        """START OWN CODE 
-    ---------------------------------------------------------------------------------------------------------------------------------------------------
-    """
-        
-    def showError(self,e):
-            mensaje_error = QtWidgets.QMessageBox()
-            mensaje_error.setIcon(QtWidgets.QMessageBox.Critical)
-            mensaje_error.setWindowTitle('Error')
-            mensaje_error.setText(str(e))
-            mensaje_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
-            mensaje_error.exec_()
-            
-    def send_advise(self):
-        warning_message = QtWidgets.QMessageBox()
-        warning_message.setIcon(QtWidgets.QMessageBox.Warning)
-        warning_message.setWindowTitle('Aviso')
-        warning_message.setText("Se ha enviado la notificación correctamente")
-        warning_message.setStandardButtons(QtWidgets.QMessageBox.Ok)
-        warning_message.exec_()
-
-
-    
