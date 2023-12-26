@@ -44,7 +44,8 @@ class AdminController(QMainWindow):
 
     
     def edit_list_btn_clicked(self):
-        ...
+        self.main_controller.change_controller('addworker',self.admin.getID())
+
     
     def send_notification_btn_clicked(self):
         ...
