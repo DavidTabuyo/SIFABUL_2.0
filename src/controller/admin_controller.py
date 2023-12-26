@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow
-
+from PyQt5 import QtWidgets
 from model.dao.admin_dao import AdminDao
+from model.dao.week_dao import Weekdao
 from model.notification import Notification
 from model.worker import Worker
 from view.admin_ui import AdminUi
@@ -34,7 +35,7 @@ class AdminController(QMainWindow):
     def update_worker_list(self):
         self.view.clear_layout(self.view.list_layout)
         workerList= self.get_workers()
-        self.view.show_workers(workerList)
+        self.show_workers(workerList)
 
     
     def update_notifications(self):
@@ -68,5 +69,16 @@ class AdminController(QMainWindow):
     def get_notifications(self)->list[Notification]:
         return AdminDao.get_notifications(self.admin.getID())
     
+    def show_workers(self, workerList: list[Worker]):
+        for worker in workerList:
+            button = QtWidgets.QPushButton(worker.get_output_for_list())
+            self.view.list_layout.addWidget(button)
+            button.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+            button.setStyleSheet('background-color: blue;font-size: 20px;border-radius: 10px;')
+            button.clicked.connect(lambda _, w=worker: self.button_show_summary(w))
+            
+    def button_show_summary(self,worker:Worker):
+        weeks=Weekdao.get_weeks(worker.worker_id)
+        self.view.show_summary(weeks)
         
     

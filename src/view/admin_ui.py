@@ -11,10 +11,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from matplotlib import pyplot as plt
 from datetime import datetime, timedelta
-from model.dao.week_dao import Weekdao
 
 from model.notification import Notification
-from model.worker import Worker
 
 
 # -*- coding: utf-8 -*-
@@ -100,18 +98,6 @@ class AdminUi(object):
                 label.setStyleSheet('background-color: green;font-size: 20px;border-radius: 10px;')
             else:
                 label.setStyleSheet('background-color: red;font-size: 20px;border-radius: 10px;')
-
-    def show_workers(self, workerList: list[Worker]):
-        for worker in workerList:
-            button = QtWidgets.QPushButton(worker.get_output_for_list())
-            self.list_layout.addWidget(button)
-            button.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-            button.setStyleSheet('background-color: blue;font-size: 20px;border-radius: 10px;')
-            button.clicked.connect(lambda _, w=worker: self.button_show_summary(w))
-            
-    def button_show_summary(self,worker:Worker):
-        weeks=Weekdao.get_weeks(worker.worker_id)
-        self.show_summary(weeks)
         
         
     def show_summary(self,weeks):
