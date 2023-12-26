@@ -78,7 +78,7 @@ class AdminUi(object):
             label.setAlignment(QtCore.Qt.AlignCenter)
             label.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
             #if all workers has seen the notificarion
-            if i.is_seen:
+            if 1:#i.is_seen:
                 label.setStyleSheet('background-color: green;font-size: 20px;border-radius: 10px;')
             else:
                 label.setStyleSheet('background-color: red;font-size: 20px;border-radius: 10px;')

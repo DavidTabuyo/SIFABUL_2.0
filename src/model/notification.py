@@ -4,3 +4,8 @@ class Notification:
         self.title = title
         self.description = description
         self.datetime = datetime
+        
+    def get_output(self) -> str:
+        # Construir el string formateado
+        return  f"Título: {self.title}\nFecha y Hora: {self.datetime}\n\nDescripción: {self.description}"
+        

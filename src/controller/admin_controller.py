@@ -24,9 +24,7 @@ class AdminController(QMainWindow):
         
         
         #update view
-                
-        #update notifications
-        #self.update_notifications()
+        self.update_notifications()
         self.update_worker_list()
         
         
@@ -58,7 +56,7 @@ class AdminController(QMainWindow):
         return AdminDao.get_workers(self.admin.getID())
         
     def get_notifications(self)->list[Notification]:
-        ...
+        return AdminDao.get_notifications(self.admin.getID())
     
         
     

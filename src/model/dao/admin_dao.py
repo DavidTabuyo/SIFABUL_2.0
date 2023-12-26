@@ -18,8 +18,18 @@ class AdminDao:
     
     @staticmethod
     def get_notifications(admin_id: str) -> list[Notification]:
-        # return a list with the sent notificatios
-        ...
+        connection = sqlite3.connect('db/db.sqlite')
+        cursor = connection.cursor()
+        notifications_data = cursor.execute('''
+            SELECT notifications.notification_id, notifications.title, notifications.description, notifications.datetime
+            FROM notifications
+            JOIN workers_notifications ON notifications.notification_id = workers_notifications.notification_id
+            JOIN workers ON workers_notifications.worker_id = workers.worker_id
+            WHERE workers.admin_id = ?
+        ''', (admin_id,)).fetchall()
+        connection.close()
+        return [Notification(*notification) for notification in notifications_data]
+
 
     @staticmethod
     def get_workers(admin_id: str) -> list[Worker]:
