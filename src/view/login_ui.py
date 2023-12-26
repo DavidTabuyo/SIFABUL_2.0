@@ -9,7 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QLineEdit, QMessageBox
 
 
 class loginUI(object):
@@ -94,7 +93,7 @@ class loginUI(object):
         self.label_4.setObjectName("label_4")
         self.verticalLayout_5.addWidget(self.label_4)
         MainWindow.setCentralWidget(self.centralwidget)
-        self.Password.setEchoMode(QLineEdit.Password)
+        self.Password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.boton1.clicked.connect(self.button1_clicked)
 
         self.retranslateUi(MainWindow)
@@ -122,20 +121,9 @@ class loginUI(object):
         self.Password.clear()
     
     def showError(self,e):
-            mensaje_error = QMessageBox()
-            mensaje_error.setIcon(QMessageBox.Critical)
+            mensaje_error = QtWidgets.QMessageBox()
+            mensaje_error.setIcon(QtWidgets.QMessageBox.Critical)
             mensaje_error.setWindowTitle('Error')
             mensaje_error.setText(str(e))
-            mensaje_error.setStandardButtons(QMessageBox.Ok)
+            mensaje_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
             mensaje_error.exec_()
-
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())

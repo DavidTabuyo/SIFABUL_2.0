@@ -78,6 +78,9 @@ class ChangePasswordUi(object):
         self.verticalLayout_2.addLayout(self.verticalLayout_3)
         self.verticalLayout.addLayout(self.verticalLayout_2)
         ChangePasswordWindow.setCentralWidget(self.centralwidget)
+        self.old_password_imp.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.new_password_imp.setEchoMode(QtWidgets.QLineEdit.Password)
+
 
         self.retranslateUi(ChangePasswordWindow)
         QtCore.QMetaObject.connectSlotsByName(ChangePasswordWindow)
@@ -103,6 +106,14 @@ class ChangePasswordUi(object):
             error_message.setText(str(e))
             error_message.setStandardButtons(QtWidgets.QMessageBox.Ok)
             error_message.exec_()
+    
+    def change_correct(self):
+        warning_message = QtWidgets.QMessageBox()
+        warning_message.setIcon(QtWidgets.QMessageBox.Warning)
+        warning_message.setWindowTitle('Aviso')
+        warning_message.setText("Se ha cambiado la contraseña correctamente")
+        warning_message.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        warning_message.exec_()
 
 if __name__ == "__main__":
     import sys

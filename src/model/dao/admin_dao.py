@@ -43,3 +43,7 @@ class AdminDao:
         ''', (admin_id,)).fetchall()
         connection.close()
         return [Worker(*worker) for worker in workers_data]
+    
+    @staticmethod
+    def add_worker(worker:Worker):
+        ...

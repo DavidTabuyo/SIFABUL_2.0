@@ -25,6 +25,7 @@ class ChangePasswordController(QMainWindow):
     def accept_btn_clicked(self):
         try:
             self.change_password(self.view.old_password_imp.text(),self.view.new_password_imp.text())
+            self.view.change_correct()
             self.returnToController()
         except Exception as e:
             self.view.showError(e)

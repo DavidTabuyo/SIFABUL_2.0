@@ -18,6 +18,9 @@ class AdminController(QMainWindow):
         self.view.edit_list_btn.clicked.connect(self.edit_list_btn_clicked)
         self.view.send_notification_btn.clicked.connect(self.send_notification_btn_clicked)
         self.view.update_btn.clicked.connect(self.update_btn_clicked)
+        self.view.add_worker_btn.clicked.connect(self.add_btn_clicked)
+
+        
         
         #model
         self.admin=AdminDao.get_admin(username)
@@ -44,11 +47,16 @@ class AdminController(QMainWindow):
 
     
     def edit_list_btn_clicked(self):
-        self.main_controller.change_controller('addworker',self.admin.getID())
+        self.main_controller.change_controller('editworkerlist',self.admin.getID())
 
     
     def send_notification_btn_clicked(self):
-        ...
+        self.main_controller.change_controller('sendnotification',self.admin.getID())
+
+        
+    def add_btn_clicked(self):
+        self.main_controller.change_controller('addworker',self.admin.getID())
+
     
     def update_btn_clicked(self):
         self.update_notifications()
