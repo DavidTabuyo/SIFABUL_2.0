@@ -23,13 +23,13 @@ class AdminDao:
 
     @staticmethod
     def get_workers(admin_id: str) -> list[Worker]:
-        # return a list with the workers
+        # Devuelve una lista con los workers
         connection = sqlite3.connect('db/db.sqlite')
-        workers = connection.execute('''
-            SELECT users.user_id, users.name, users.salt, users.hash workers.admin_id
+        workers_data = connection.execute('''
+            SELECT users.user_id, users.name, users.salt, users.hash, workers.admin_id
             FROM users
-            JOIN workers on users.user_id = workers.worker_id
-            WHERE user_id = ?
+            JOIN workers ON users.user_id = workers.worker_id
+            WHERE workers.admin_id = ?
         ''', (admin_id,)).fetchall()
         connection.close()
-        return [Admin(*worker) for worker in workers]
+        return [Worker(*worker) for worker in workers_data]

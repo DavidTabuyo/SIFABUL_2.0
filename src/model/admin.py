@@ -5,7 +5,9 @@ class Admin:
         self.salt = salt
         self.hash = hash
         
-    
+    def getID(self) ->str:
+        return self.admin_id
+
 
     # @staticmethod
     # def from_id(responsable_id: str) -> 'Responsable':

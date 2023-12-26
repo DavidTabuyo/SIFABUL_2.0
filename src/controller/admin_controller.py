@@ -13,7 +13,7 @@ class AdminController(QMainWindow):
         
         #view
         self.view=AdminUi()
-        self.view.setupUi()
+        self.view.setupUi(self)
         self.view.change_password_btn.clicked.connect(self.change_password_btn_clicked)
         self.view.edit_list_btn.clicked.connect(self.edit_list_btn_clicked)
         self.view.send_notification_btn.clicked.connect(self.send_notification_btn_clicked)
@@ -26,7 +26,7 @@ class AdminController(QMainWindow):
         #update view
                 
         #update notifications
-        self.update_notifications()
+        #self.update_notifications()
         self.update_worker_list()
         
         
@@ -55,7 +55,7 @@ class AdminController(QMainWindow):
         self.update_worker_list()
 
     def get_workers(self)->list[Worker]:
-        ...
+        return AdminDao.get_workers(self.admin.getID())
         
     def get_notifications(self)->list[Notification]:
         ...
