@@ -31,10 +31,13 @@ class ChangePasswordController(QMainWindow):
             self.view.showError(e)
         
     def returnToController(self):
+                
         if UserDao.is_admin(self.user.getId()):
             self.main_controller.change_controller('admin',self.user.getId())
         else:
             self.main_controller.change_controller('worker',self.user.getId())
+        
+
 
     def change_password(self,old_pssw:str, new_pssw:str):
         ...

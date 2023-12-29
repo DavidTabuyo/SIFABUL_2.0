@@ -22,8 +22,8 @@ class AddWorkerController(QMainWindow):
         
         
     def btn_cancel_clicked(self):
-        self.main_controller.change_controller('admin',self.admin.getID())
-        
+        self.close()
+                
     def btn_accept_clicked(self):
         try:
             #check if user exists before

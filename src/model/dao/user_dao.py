@@ -36,3 +36,7 @@ class UserDao:
         connection.close()
         return User(*user) if user else None
         
+    @staticmethod
+    def delete_User(user_id:str):
+        ...
+        

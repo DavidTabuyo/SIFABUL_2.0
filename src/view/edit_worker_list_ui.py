@@ -85,13 +85,20 @@ class EditWorkerListUi(object):
     
 
         
-    def show_workers(workers:list[Worker]):
-        ...
+    def show_workers(self,workers:list[Worker]):
+        id_list = [worker.getID() for worker in workers]
+        self.workers_cb.addItems(id_list)
+
     
     
-    def showError(e:str):
-        ...
+    def showError(self,e:str):
+        error_message = QtWidgets.QMessageBox()
+        error_message.setIcon(QtWidgets.QMessageBox.Critical)
+        error_message.setWindowTitle('Error')
+        error_message.setText(str(e))
+        error_message.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        error_message.exec_()
     
-    def get_selected_worker()->Worker:
-        ...
+    def get_selected_worker(self)->str:
+        return self.workers_cb.currentText()
         

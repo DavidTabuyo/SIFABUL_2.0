@@ -25,14 +25,13 @@ class SendNotificationController(QMainWindow):
         
         
     def cancel_btn_clicked(self):
-        self.main_controller.change_controller('admin',self.admin.getID())
-
+        self.close()
     
     def send_btn_clicked(self):
         try:
             self.add_notification()
             self.view.send_advise()
-            self.main_controller.change_controller('admin',self.admin.getID())
+            self.close()
         except Exception as e:
             self.view.showError(e)
 
