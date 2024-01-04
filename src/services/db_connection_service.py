@@ -1,24 +1,36 @@
+from contextlib import contextmanager
 import sqlite3
 
 
-class DBConnecionService:
-    def __init__(self) -> None:
-        self.connection = sqlite3.connect('db/db.sqlite')
-        
-    def close(self):
-        self.connection.close()
-    
-    def querry(self, querry: str):
-        self.connection.execute(querry).fetchall()
+@contextmanager
+def db_connection_service():
+    try:
+        connection = sqlite3.connect('db/db.sqlite')
+        yield DBConnection(connection)
+
+    except sqlite3.DataError:
+        raise ValueError('Probablemente valor no adecuado')
+
+    finally:
+        connection.close()
 
 
-conn = DBConnecionService()
-a = conn.querry('''
-    CREATE TABLE yyy (
-        user_id TEXT PRIMARY KEY,
-        name TEXT NOT NULL,
-        salt BLOB NOT NULL,
-        hash BLOB NOT NULL
-    );            
-''')
-print(a)
+class DBConnection:
+    def __init__(self, connection: sqlite3.Connection):
+        self.connection = connection
+
+    def querry(self, querry: str, args: tuple) -> list[tuple[str, ...]]:
+        return self.connection.execute(querry, args).fetchall()
+
+
+if __name__ == '__main__':
+    with db_connection_service() as conn:
+        a = conn.querry('''
+            CREATE TABLE yy4 (
+                user_id TEXT PRIMARY KEY,
+                name TEXT NOT NULL,
+                salt BLOB NOT NULL,
+                hash BLOB NOT NULL
+            );            
+        ''')
+        print(a)
