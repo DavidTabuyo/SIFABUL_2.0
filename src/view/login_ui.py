@@ -15,8 +15,6 @@ class loginUI(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
-        MainWindow.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-        MainWindow.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.widget = QtWidgets.QWidget(self.centralwidget)
@@ -165,3 +163,14 @@ class loginUI(object):
             mensaje_error.setText(str(e))
             mensaje_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
             mensaje_error.exec_()
+
+
+'''
+arriba
+        MainWindow.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        MainWindow.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+        
+abajo
+a los botones y labels
+self.label.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0)
+'''
