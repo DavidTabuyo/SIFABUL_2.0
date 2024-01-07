@@ -142,7 +142,7 @@ border-bottom-right-radius: 50px;</string>
       <string>Log In</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit">
+    <widget class="QLineEdit" name="UserName">
      <property name="geometry">
       <rect>
        <x>295</x>
@@ -168,7 +168,7 @@ padding-bottom:7px;
       <string> Usuario</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_2">
+    <widget class="QLineEdit" name="Password">
      <property name="geometry">
       <rect>
        <x>295</x>
@@ -194,7 +194,7 @@ padding-bottom:7px;
       <string> Contraseña</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="BotonOk">
      <property name="geometry">
       <rect>
        <x>295</x>
@@ -249,20 +249,7 @@ background-image: url(:/images/sifabulchiquito.html);</string>
     </widget>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>26</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources>
-  <include location="../OneDrive/Documentos/Nueva carpeta/res.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
