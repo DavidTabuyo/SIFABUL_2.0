@@ -17,3 +17,5 @@ AddNotification en NotificationDAO
 deleteuser en UserDao
 
 temas de edit worker list sin acabar
+
+implementar el boton de cancel de ininicar sesion

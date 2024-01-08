@@ -15,6 +15,8 @@ class loginUI(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
+        MainWindow.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        MainWindow.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.widget = QtWidgets.QWidget(self.centralwidget)
@@ -51,21 +53,12 @@ class loginUI(object):
 "    color: rgba(131, 96, 53, 255);\n"
 "}\n"
 "\n"
-"QPushButton#pushButton_2:pressed {\n"
-"    padding-left: 5px;\n"
-"    padding-top: 5px;\n"
-"    background-color: rgba(91, 88, 53, 255);\n"
-"}\n"
 "\n"
-"QPushButton#pushButton_2:pressed {\n"
-"    padding-left: 5px;\n"
-"    padding-top: 5px;\n"
-"    background-color: rgba(49, 87, 66, 255);\n"
-"}")
+"")
         self.widget.setObjectName("widget")
         self.label = QtWidgets.QLabel(self.widget)
         self.label.setGeometry(QtCore.QRect(40, 30, 280, 430))
-        self.label.setStyleSheet("border-image: url(:/images/6ef95b76fbbac79716b698fb1bf38407.jpg);\n"
+        self.label.setStyleSheet("border-image: url(assets/img.jpg);\n"
 "border-top-left-radius:50px;")
         self.label.setText("")
         self.label.setObjectName("label")
@@ -82,9 +75,9 @@ class loginUI(object):
         self.label_3.setText("")
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(self.widget)
-        self.label_4.setGeometry(QtCore.QRect(360, 90, 140, 40))
+        self.label_4.setGeometry(QtCore.QRect(350, 90, 191, 30))  
         font = QtGui.QFont()
-        font.setPointSize(20)
+        font.setPointSize(16)
         font.setBold(True)
         font.setWeight(75)
         self.label_4.setFont(font)
@@ -121,6 +114,7 @@ class loginUI(object):
         font.setBold(True)
         font.setWeight(75)
         self.BotonOk.setFont(font)
+        self.BotonOk.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.BotonOk.setObjectName("BotonOk")
         self.label_5 = QtWidgets.QLabel(self.widget)
         self.label_5.setGeometry(QtCore.QRect(295, 360, 191, 16))
@@ -128,11 +122,39 @@ class loginUI(object):
         self.label_5.setObjectName("label_5")
         self.label_6 = QtWidgets.QLabel(self.widget)
         self.label_6.setGeometry(QtCore.QRect(280, 70, 76, 71))
+        import os
+
+        print("El directorio de trabajo actual es:", os.getcwd())
         self.label_6.setStyleSheet("\n"
-"background-image: url(:/images/sifabulchiquito.html);")
+"background-image: url(assets/sifabulchiquito.html);")
         self.label_6.setText("")
         self.label_6.setObjectName("label_6")
+        self.btn_cancel = QtWidgets.QPushButton(self.widget)
+        self.btn_cancel.setGeometry(QtCore.QRect(390, 410, 100, 35))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.btn_cancel.setFont(font)
+        self.btn_cancel.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_cancel.setObjectName("btn_cancel")
         MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+        self.label.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
+        self.label_2.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
+        self.label_3.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
+        self.label_4.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
+        self.label_5.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
+        self.label_6.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
+        self.Password.setEchoMode(QtWidgets.QLineEdit.Password)
+
+
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -140,21 +162,17 @@ class loginUI(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label_4.setText(_translate("MainWindow", "Log In"))
+        self.label_4.setText(_translate("MainWindow", "Iniciar Sesión"))
         self.UserName.setPlaceholderText(_translate("MainWindow", " Usuario"))
         self.Password.setPlaceholderText(_translate("MainWindow", " Contraseña"))
-        self.BotonOk.setText(_translate("MainWindow", "L o g I n"))
+        self.BotonOk.setText(_translate("MainWindow", "Aceptar"))
         self.label_5.setText(_translate("MainWindow", "Olvidaste tu contraseña?"))
+        self.btn_cancel.setText(_translate("MainWindow", "Cancelar"))
 
 
         """START OWN CODE 
     ---------------------------------------------------------------------------------------------------------------------------------------------------
     """
-    
-    def button1_clicked(self):
-        #delete the content
-        self.UserName.clear()
-        self.Password.clear()
     
     def showError(self,e):
             mensaje_error = QtWidgets.QMessageBox()

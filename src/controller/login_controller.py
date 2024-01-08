@@ -11,6 +11,7 @@ class LoginController(QMainWindow):
         self.view = loginUI()
         self.view.setupUi(self)
         self.view.BotonOk.clicked.connect(self.BotonOk_clicked)
+        self.view.btn_cancel.clicked.connect(self.btn_cancel_clicked)
 
     # boton aceptar
     def BotonOk_clicked(self):
@@ -21,6 +22,9 @@ class LoginController(QMainWindow):
             ...
         except Exception as e:
             self.view.showError(e)
+        
+    def btn_cancel_clicked(self):
+        ...
             
     
     def login(self, user_id: str, password: str) -> str:
