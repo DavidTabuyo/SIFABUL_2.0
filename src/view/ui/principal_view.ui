@@ -69,7 +69,7 @@ QPushButton#pushButton_2:hover {
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-image: url(:/images/6ef95b76fbbac79716b698fb1bf38407.jpg);
+      <string notr="true">border-image: url(:/assets/img.jpg);
 border-top-left-radius:50px;</string>
      </property>
      <property name="text">
@@ -235,7 +235,7 @@ padding-bottom:7px;
      </property>
      <property name="styleSheet">
       <string notr="true">
-background-image: url(:/images/sifabulchiquito.html);</string>
+background-image: url(:/assets/sifabulchiquito.html);</string>
      </property>
      <property name="text">
       <string/>
@@ -279,7 +279,7 @@ background-image: url(:/images/sifabulchiquito.html);</string>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="../OneDrive/Documentos/Nueva carpeta/res.qrc"/>
+  <include location="../assets/res.qrc"/>
  </resources>
  <connections/>
 </ui>
