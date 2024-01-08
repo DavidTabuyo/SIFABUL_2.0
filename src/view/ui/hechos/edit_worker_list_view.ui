@@ -141,7 +141,7 @@ border: 2px solid rgba(0, 0, 0, 0.7);
       <string>Elige un Usuario:</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_2">
+    <widget class="QLineEdit" name="username_le">
      <property name="geometry">
       <rect>
        <x>320</x>
@@ -252,7 +252,7 @@ background-image: url(:/assets/sifabulchiquito.html);</string>
       <string>Usuario:</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="workers_cb">
      <property name="geometry">
       <rect>
        <x>320</x>
@@ -269,7 +269,7 @@ background-image: url(:/assets/sifabulchiquito.html);</string>
     padding: 5px;</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QPushButton" name="change_password_btn">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -292,7 +292,7 @@ background-image: url(:/assets/sifabulchiquito.html);</string>
       <string>Cambiar contraseña</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_4">
+    <widget class="QPushButton" name="delete_user_btn">
      <property name="geometry">
       <rect>
        <x>330</x>
@@ -341,8 +341,6 @@ background-image: url(:/assets/sifabulchiquito.html);</string>
    </widget>
   </widget>
  </widget>
- <resources>
-  <include location="../assets/res.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

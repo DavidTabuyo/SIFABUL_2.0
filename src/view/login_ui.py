@@ -15,6 +15,8 @@ class loginUI(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
+        icon_path = "assets/sifabulchiquito.html" 
+        MainWindow.setWindowIcon(QtGui.QIcon(icon_path))
         MainWindow.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         MainWindow.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -122,9 +124,6 @@ class loginUI(object):
         self.label_5.setObjectName("label_5")
         self.label_6 = QtWidgets.QLabel(self.widget)
         self.label_6.setGeometry(QtCore.QRect(280, 70, 76, 71))
-        import os
-
-        print("El directorio de trabajo actual es:", os.getcwd())
         self.label_6.setStyleSheet("\n"
 "background-image: url(assets/sifabulchiquito.html);")
         self.label_6.setText("")
