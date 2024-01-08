@@ -15,7 +15,7 @@ class AddWorkerController(QMainWindow):
         self.view.setupUi(self,admin_id)
         
         self.view.btn_cancel.clicked.connect(self.btn_cancel_clicked)
-        self.view.btn_accept.clicked.connect(self.btn_accept_clicked)
+        self.view.btm_accept.clicked.connect(self.btn_accept_clicked)
 
         #model
         self.admin= AdminDao.get_admin(admin_id)
