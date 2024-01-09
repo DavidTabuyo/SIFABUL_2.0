@@ -38,11 +38,11 @@ class SendNotificationController(QMainWindow):
         
     def update_list(self):
         name_list = [worker.get_output_for_list() for worker in AdminDao.get_workers(self.admin.getID())]
-        self.view.worker_list.addItems(name_list)
+        #self.view.worker_list.addItems(name_list)
         
     def add_notification(self):
         #add notification, show error if no worker selected
-        selected_workers = [item.text() for item in self.view.worker_list.selectedItems()]
+        selected_workers#  = [item.text() for item in self.view.worker_list.selectedItems()]
         if not selected_workers:
             raise ValueError('No has seleccionado ningún destinatario')
         else:

@@ -126,8 +126,8 @@ border: 2px solid rgba(0, 0, 0, 0.7);
     <widget class="QLabel" name="label_6">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>30</y>
+       <x>90</x>
+       <y>40</y>
        <width>76</width>
        <height>71</height>
       </rect>
@@ -207,6 +207,9 @@ background-image: url(assets/sifabulchiquito.html);</string>
      </property>
      <property name="text">
       <string>ENVIAR NOTIFICACIÓN</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLineEdit" name="title_edit">
@@ -289,9 +292,6 @@ background-image: url(assets/sifabulchiquito.html);</string>
    </widget>
   </widget>
  </widget>
- <resources>
-  <include location="assets/res.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
-
