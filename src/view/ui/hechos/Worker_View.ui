@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>811</width>
-    <height>600</height>
+    <width>1031</width>
+    <height>716</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -73,17 +73,78 @@ background-color: #2c313c
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item alignment="Qt::AlignTop">
-         <widget class="QFrame" name="frame">
+        <item>
+         <widget class="QFrame" name="frame_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Raised</enum>
           </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item alignment="Qt::AlignLeft|Qt::AlignTop">
+            <widget class="QPushButton" name="pushButton_10">
+             <property name="font">
+              <font>
+               <pointsize>15</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+    background-color: qlineargradient(spread: pad, x1: 0, y1: 0.505682, x2: 1, y2: 0.477, stop: 0 rgba(49, 87, 66, 219), stop: 1 rgba(25, 42, 35, 226));
+    color: rgba(255, 255, 255, 210);
+    border-radius: 5px;
+}
+
+QPushButton#pushButton:hover {
+    background-color: qlineargradient(spread: pad, x1: 0, y1: 0.505682, x2: 1, y2: 0.477, stop: 0 rgba(38, 66, 50, 219), stop: 1 rgba(19, 31, 26, 226));
+}
+
+QPushButton#pushButton:pressed {
+    padding-left: 5px;
+    padding-top: 5px;
+    background-color: rgba(38, 66, 50, 255);
+}
+
+QPushButton#pushButton:pressed {
+    padding-left: 5px;
+    padding-top: 5px;
+    background-color: rgba(49, 87, 66, 255);
+}</string>
+             </property>
+             <property name="text">
+              <string>≡</string>
+             </property>
+            </widget>
+           </item>
            <item>
             <widget class="QPushButton" name="pushButton">
+             <property name="font">
+              <font>
+               <pointsize>11</pointsize>
+              </font>
+             </property>
              <property name="styleSheet">
               <string notr="true">QPushButton {
     background-color: qlineargradient(spread: pad, x1: 0, y1: 0.505682, x2: 1, y2: 0.477, stop: 0 rgba(49, 87, 66, 219), stop: 1 rgba(25, 42, 35, 226));
@@ -116,39 +177,16 @@ QPushButton#pushButton:pressed {
          </widget>
         </item>
         <item>
-         <widget class="QFrame" name="frame_2">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
+         <widget class="QFrame" name="frame">
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Raised</enum>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_3"/>
          </widget>
         </item>
         <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Preferred</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>10</width>
-            <height>30</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item alignment="Qt::AlignBottom">
          <widget class="QFrame" name="frame_3">
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
@@ -732,7 +770,7 @@ QPushButton#pushButton_9:pressed {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>811</width>
+     <width>1031</width>
      <height>26</height>
     </rect>
    </property>
