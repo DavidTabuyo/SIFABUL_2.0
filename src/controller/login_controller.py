@@ -24,7 +24,7 @@ class LoginController(QMainWindow):
             self.view.showError(e)
         
     def btn_cancel_clicked(self):
-        ...
+        self.close()
             
     
     def login(self, user_id: str, password: str) -> str:
