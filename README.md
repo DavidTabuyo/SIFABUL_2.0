@@ -19,3 +19,5 @@ deleteuser en UserDao
 temas de edit worker list sin acabar
 
 implementar el boton de cancel de ininicar sesion
+
+Añadir borrar las notificaciones verdes una vez se hayan visto verdes, la segunda vez que se entra

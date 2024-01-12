@@ -15,11 +15,12 @@ class AdminController(QMainWindow):
         #view
         self.view=AdminUi()
         self.view.setupUi(self)
-        self.view.change_password_btn.clicked.connect(self.change_password_btn_clicked)
+        self.view.BtnChangePassword.clicked.connect(self.change_password_btn_clicked)
         self.view.edit_list_btn.clicked.connect(self.edit_list_btn_clicked)
         self.view.send_notification_btn.clicked.connect(self.send_notification_btn_clicked)
-        self.view.update_btn.clicked.connect(self.update_btn_clicked)
+        self.view.refresh_btn.clicked.connect(self.update_btn_clicked)
         self.view.add_worker_btn.clicked.connect(self.add_btn_clicked)
+        self.view.close_btn.clicked.connect(self.close_btn_clicked)
 
         
         
@@ -30,10 +31,11 @@ class AdminController(QMainWindow):
         #update view
         self.update_notifications()
         self.update_worker_list()
+        self.view.set_user(self.admin.getID())
         
         
     def update_worker_list(self):
-        self.view.clear_layout(self.view.list_layout)
+        self.view.clear_layout(self.view.workers_layout)
         workerList= self.get_workers()
         self.show_workers(workerList)
 
@@ -72,13 +74,20 @@ class AdminController(QMainWindow):
     def show_workers(self, workerList: list[Worker]):
         for worker in workerList:
             button = QtWidgets.QPushButton(worker.get_output_for_list())
-            self.view.list_layout.addWidget(button)
+            self.view.workers_layout.addWidget(button)
             button.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-            button.setStyleSheet('background-color: blue;font-size: 20px;border-radius: 10px;')
+            button.setStyleSheet('background-color: #2c313c;'
+                    'color: rgba(255, 255, 255, 210);'
+                    'border-radius: 15px;'  
+                    'font-size: 16px;'  
+                    'font-weight: bold;')  
+
             button.clicked.connect(lambda _, w=worker: self.button_show_summary(w))
             
     def button_show_summary(self,worker:Worker):
         weeks=Weekdao.get_weeks(worker.worker_id)
         self.view.show_summary(weeks)
         
+    def close_btn_clicked(self):
+        self.close()
     

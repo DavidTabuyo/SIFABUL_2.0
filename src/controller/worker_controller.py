@@ -17,9 +17,10 @@ class WorkerController(QMainWindow):
         self.view = WorkerUi()
         self.view.setupUi(self)
         self.view.BtnFichar.clicked.connect(self.BtnCheck_clicked)
-        self.view.btnResumen.clicked.connect(self.btnResumen_clicked)
-        self.view.btnChangePassword.clicked.connect(self.btnChangePassword_clicked)
+        self.view.BtnResumen.clicked.connect(self.btnResumen_clicked)
+        self.view.BtnChangePassword.clicked.connect(self.btnChangePassword_clicked)
         self.view.refresh_btn.clicked.connect(self.refresh_btn_clicked)
+        self.view.close_btn.clicked.connect(self.closeBtn_clicked)
 
         #model
         self.worker= WorkerDao.get_worker(username)
@@ -27,6 +28,8 @@ class WorkerController(QMainWindow):
         #update view
         self.update_checks()
         self.update_notifications()
+        self.view.set_user(self.worker.getID())
+
         
     def update_checks(self):
         self.view.clear_layout(self.view.layoutFichajes)
@@ -93,4 +96,5 @@ class WorkerController(QMainWindow):
         Weekdao.update_or_create_week(
             self.worker.getID(), monday, week_total + total_seconds_check_in)
 
-    
+    def closeBtn_clicked(self):
+        self.close()

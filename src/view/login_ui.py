@@ -118,10 +118,6 @@ class loginUI(object):
         self.BotonOk.setFont(font)
         self.BotonOk.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.BotonOk.setObjectName("BotonOk")
-        self.label_5 = QtWidgets.QLabel(self.widget)
-        self.label_5.setGeometry(QtCore.QRect(295, 360, 191, 16))
-        self.label_5.setStyleSheet("color:rgba(0, 0, 0, 210);")
-        self.label_5.setObjectName("label_5")
         self.label_6 = QtWidgets.QLabel(self.widget)
         self.label_6.setGeometry(QtCore.QRect(280, 70, 76, 71))
         self.label_6.setStyleSheet("\n"
@@ -149,7 +145,6 @@ class loginUI(object):
         self.label_2.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
         self.label_3.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
         self.label_4.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
-        self.label_5.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
         self.label_6.setGraphicsEffect(QtWidgets.QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
         self.Password.setEchoMode(QtWidgets.QLineEdit.Password)
 
@@ -165,7 +160,6 @@ class loginUI(object):
         self.UserName.setPlaceholderText(_translate("MainWindow", " Usuario"))
         self.Password.setPlaceholderText(_translate("MainWindow", " Contraseña"))
         self.BotonOk.setText(_translate("MainWindow", "Aceptar"))
-        self.label_5.setText(_translate("MainWindow", "Olvidaste tu contraseña?"))
         self.btn_cancel.setText(_translate("MainWindow", "Cancelar"))
 
 
