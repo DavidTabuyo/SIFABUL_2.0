@@ -15,6 +15,7 @@ class SendNotificationController(QMainWindow):
         self.view.cancel_btn.clicked.connect(self.cancel_btn_clicked)
         self.view.send_btn.clicked.connect(self.send_btn_clicked)
         
+        
         #model
         self.admin=AdminDao.get_admin(admin_id)
         
@@ -38,13 +39,14 @@ class SendNotificationController(QMainWindow):
         
     def update_list(self):
         name_list = [worker.get_output_for_list() for worker in AdminDao.get_workers(self.admin.getID())]
-        #self.view.worker_list.addItems(name_list)
+        #self.view.select_worker_cb.addItems(name_list)
         
     def add_notification(self):
         #add notification, show error if no worker selected
-        selected_workers#  = [item.text() for item in self.view.worker_list.selectedItems()]
+        selected_workers # = [item.text() for item in self.view.select_worker_cb.selectedItems()]
         if not selected_workers:
             raise ValueError('No has seleccionado ningún destinatario')
         else:
             #create and send notification to selected_workers
             ...
+        

@@ -21,6 +21,7 @@ class AdminController(QMainWindow):
         self.view.refresh_btn.clicked.connect(self.update_btn_clicked)
         self.view.add_worker_btn.clicked.connect(self.add_btn_clicked)
         self.view.close_btn.clicked.connect(self.close_btn_clicked)
+        self.view.delete_btn.clicked.connect(self.delete_btn_clicked)
 
         
         
@@ -91,3 +92,5 @@ class AdminController(QMainWindow):
     def close_btn_clicked(self):
         self.close()
     
+    def delete_btn_clicked(self):
+        self.view.clear_layout(self.view.notifications_layout)
