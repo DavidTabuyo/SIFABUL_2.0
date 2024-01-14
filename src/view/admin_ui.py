@@ -333,6 +333,18 @@ class AdminUi(object):
 "    padding-top: 5px;\n"
 "    background-color: rgba(49, 87, 66, 255);\n"
 "}")
+        self.scroll_area = QtWidgets.QScrollArea(self.widget_3)
+        self.scroll_area.setGeometry(QtCore.QRect(0, 0, 581, 531))
+        self.scroll_area.setWidgetResizable(True)
+
+        # Create a widget to contain the notifications layout
+        self.scroll_widget = QtWidgets.QWidget()
+        self.scroll_area.setWidget(self.scroll_widget)
+
+        # Set notifications_layout as the layout for the scroll widget
+        self.notifications_layout = QtWidgets.QVBoxLayout(self.scroll_widget)
+        self.notifications_layout.setContentsMargins(0, 0, 0, 0)
+        self.notifications_layout.setObjectName("notifications_layout")
         self.add_worker_btn.setObjectName("add_worker_btn")
         self.refresh_btn = QtWidgets.QPushButton(self.widget)
         self.refresh_btn.setGeometry(QtCore.QRect(680, 750, 51, 41))
@@ -366,6 +378,38 @@ class AdminUi(object):
 "}")
         self.refresh_btn.setText("")
         self.refresh_btn.setObjectName("refresh_btn")
+        self.delete_btn = QtWidgets.QPushButton(self.widget)
+        self.delete_btn.setGeometry(QtCore.QRect(737, 750, 51, 41))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.delete_btn.setFont(font)
+        self.delete_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.delete_btn.setStyleSheet("QPushButton#delete_btn {\n"
+        "    image: url(assets/trash_icon.png);\n"  # Ajusta la imagen según tus necesidades
+        "    background-color: qlineargradient(spread: pad, x1: 0, y1: 0.505682, x2: 1, y2: 0.477, stop: 0 rgba(49, 87, 66, 219), stop: 1 rgba(25, 42, 35, 226));\n"
+        "    color: rgba(255, 255, 255, 210);\n"
+        "    border-radius: 5px;\n"
+        "}\n"
+        "\n"
+        "QPushButton#delete_btn:hover {\n"
+        "    background-color: qlineargradient(spread: pad, x1: 0, y1: 0.505682, x2: 1, y2: 0.477, stop: 0 rgba(38, 66, 50, 219), stop: 1 rgba(19, 31, 26, 226));\n"
+        "}\n"
+        "\n"
+        "QPushButton#delete_btn:pressed {\n"
+        "    padding-left: 5px;\n"
+        "    padding-top: 5px;\n"
+        "    background-color: rgba(38, 66, 50, 255);\n"
+        "}\n"
+        "\n"
+        "QPushButton#delete_btn:pressed {\n"
+        "    padding-left: 5px;\n"
+        "    padding-top: 5px;\n"
+        "    background-color: rgba(49, 87, 66, 255);\n"
+        "}")
+        self.delete_btn.setText("")
+        self.delete_btn.setObjectName("delete_btn")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)

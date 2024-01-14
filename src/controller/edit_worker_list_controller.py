@@ -43,9 +43,11 @@ class EditWorkerListController(QMainWindow):
     
     def btn_delete_user_clicked(self):
         UserDao.delete_User(self.view.get_selected_worker())
+        self.close()
+        
     
     def btn_change_password_clicked(self):
-        self.main_controller.change_controller('changepassword',self.view.get_selected_worker())
+        self.main_controller.change_controller('changepassword',self.view.get_selected_worker(),self.admin.getID())
 
     
 

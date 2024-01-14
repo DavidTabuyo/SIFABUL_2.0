@@ -5,6 +5,7 @@ from model.dao.check_dao import CheckDao
 from model.dao.user_dao import UserDao
 from model.dao.week_dao import WeekDao
 from model.dao.worker_dao import WorkerDao
+from model.dao.notification_worker_dao import NotificationWorkerdao
 from view.worker_ui import WorkerUi
 
 
@@ -21,6 +22,8 @@ class WorkerController(QMainWindow):
         self.view.BtnChangePassword.clicked.connect(self.btnChangePassword_clicked)
         self.view.refresh_btn.clicked.connect(self.refresh_btn_clicked)
         self.view.close_btn.clicked.connect(self.closeBtn_clicked)
+        self.view.delete_btn.clicked.connect(self.delete_btn_clicked)
+
 
         #model
         self.worker= WorkerDao.get_worker(username)
@@ -98,3 +101,10 @@ class WorkerController(QMainWindow):
 
     def closeBtn_clicked(self):
         self.close()
+    
+    def delete_btn_clicked(self):
+        notifications=WorkerDao.get_notifications(self.worker.getID())
+        #NotificationWorkerdao.update_notifications_status()
+        self.view.clear_layout(self.view.notifications_layout)
+    
+    

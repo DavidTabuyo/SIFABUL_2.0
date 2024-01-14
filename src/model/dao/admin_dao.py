@@ -20,7 +20,7 @@ class AdminDao:
     def get_notifications(admin_id: str) -> list[Notification]:
         with db_connection_service() as conn:
             notifications_data = conn.querry('''
-                SELECT notifications.notification_id, notifications.title, notifications.description, notifications.datetime
+                SELECT DISTINCT notifications.notification_id, notifications.title, notifications.description, notifications.datetime
                 FROM notifications
                 JOIN workers_notifications ON notifications.notification_id = workers_notifications.notification_id
                 JOIN workers ON workers_notifications.worker_id = workers.worker_id
@@ -43,4 +43,20 @@ class AdminDao:
 
     @staticmethod
     def add_worker(worker: Worker):
-        ...
+        with db_connection_service() as conn:
+            # Insertar en la tabla 'users'
+            conn.execute('''
+                INSERT INTO users (user_id, name, salt, hash)
+                 VALUES (?, ?, ?, ?)
+             ''', (worker.worker_id, worker.name, worker.salt, worker.hash))
+
+             # Insertar en la tabla 'admins'
+            conn.execute('''
+                INSERT INTO admins (admin_id)
+                VALUES (?)
+            ''', (worker.worker_id,))
+                # Insertar en la tabla 'workers'
+            conn.execute('''
+                INSERT INTO workers (worker_id, admin_id)
+                    VALUES (?, ?)
+                ''', (worker.worker_id, worker.admin_id))

@@ -51,6 +51,5 @@ class AddWorkerController(QMainWindow):
     
     def add_worker(self):
         ...
-    
 
         
