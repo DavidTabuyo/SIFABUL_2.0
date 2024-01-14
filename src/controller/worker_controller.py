@@ -5,7 +5,7 @@ from model.dao.check_dao import CheckDao
 from model.dao.user_dao import UserDao
 from model.dao.week_dao import WeekDao
 from model.dao.worker_dao import WorkerDao
-from model.dao.notification_worker_dao import NotificationWorkerdao
+from model.dao.notification_worker_dao import NotificationWorkerDao
 from view.worker_ui import WorkerUi
 
 
