@@ -1,14 +1,21 @@
-import sqlite3
+from services.db_connection_service import db_connection_service
 
 
-class NotificationWorkerdao:
-    
+class NotificationWorkerDao:
+
     @staticmethod
-    def update_notifications_status(worker_id: str, notificationID:str, monday:str,total:int):
-        connection = sqlite3.connect('db/db.sqlite')
-        connection.execute('''
-            INSERT OR REPLACE INTO weeks (worker_id, monday, total) VALUES
-                (?, ?, ?);
-        ''', (worker_id, monday, total))
-        connection.commit()
-        connection.close()
+    def add_notification(worker_id: str, notification_id: str, seen: str):
+        with db_connection_service() as conn:
+            conn.querry('''
+                INSERT INTO workers_notifications (worker_id, notification_id, seen) VALUES
+                    (?, ?, ?);
+            ''', (worker_id, notification_id, seen))
+
+    @staticmethod
+    def update_notification_status(worker_id: str, notification_id: str, seen: str):
+        with db_connection_service() as conn:
+            conn.querry('''
+                UPDATE workers_notifictions
+                SET seen = ?
+                WHERE worker_id = ? AND notification_id = ?;
+            ''', (seen, worker_id, notification_id))

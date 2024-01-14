@@ -19,18 +19,24 @@ class DBConnection:
     def __init__(self, connection: sqlite3.Connection):
         self.connection = connection
 
-    def querry(self, querry: str, args: tuple) -> list[tuple[str, ...]]:
-        return self.connection.execute(querry, args).fetchall()
+    def querry(self, querry: str, args: tuple = ()) -> list[tuple[str, ...]]:
+        response = self.connection.execute(querry, args).fetchall()
+        self.connection.commit()
+        return response
 
 
 if __name__ == '__main__':
     with db_connection_service() as conn:
         a = conn.querry('''
-            CREATE TABLE yy4 (
-                user_id TEXT PRIMARY KEY,
-                name TEXT NOT NULL,
-                salt BLOB NOT NULL,
-                hash BLOB NOT NULL
+            CREATE TABLE a (
+                id TEXT PRIMARY KEY
             );            
+        ''')
+        print(a)
+        
+    with db_connection_service() as conn:
+        a = conn.querry('''
+            INSERT INTO a (id) VALUES
+                (1);
         ''')
         print(a)

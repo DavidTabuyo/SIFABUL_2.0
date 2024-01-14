@@ -1,9 +1,9 @@
 from PyQt5.QtWidgets import QMainWindow
 import arrow
 import requests
-from model.dao.check_dao import Checkdao
+from model.dao.check_dao import CheckDao
 from model.dao.user_dao import UserDao
-from model.dao.week_dao import Weekdao
+from model.dao.week_dao import WeekDao
 from model.dao.worker_dao import WorkerDao
 from view.worker_ui import WorkerUi
 
@@ -52,7 +52,7 @@ class WorkerController(QMainWindow):
             self.view.showError(e)
     
     def btnResumen_clicked(self):
-        weeks=Weekdao.get_weeks(self.worker.worker_id)
+        weeks=WeekDao.get_weeks(self.worker.worker_id)
         self.view.show_summary(weeks)
         
     def btnChangePassword_clicked(self):
@@ -79,21 +79,21 @@ class WorkerController(QMainWindow):
 
         # Add new check
         is_new_check_entry = not last_check.is_entry if last_check else True
-        Checkdao.add_new_check(self.worker.getID(), date, time, is_new_check_entry)
+        CheckDao.add_new_check(self.worker.getID(), date, time, is_new_check_entry)
 
         # Exit function if !is_entry
         if is_new_check_entry:
             return
 
         # Cupdate week and calculate check time
-        week = Weekdao.get_week(self.worker.getID(), monday)
+        week = WeekDao.get_week(self.worker.getID(), monday)
         week_total = week.total if week else 0
 
         entry = arrow.get(last_check.time, 'HH:mm:ss')
         exit = arrow.get(time, 'HH:mm:ss')
         total_seconds_check_in = (exit - entry).total_seconds()
 
-        Weekdao.update_or_create_week(
+        WeekDao.update_or_create_week(
             self.worker.getID(), monday, week_total + total_seconds_check_in)
 
     def closeBtn_clicked(self):

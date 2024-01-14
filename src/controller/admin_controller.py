@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import QtWidgets
 from model.dao.admin_dao import AdminDao
-from model.dao.week_dao import Weekdao
+from model.dao.week_dao import WeekDao
 from model.notification import Notification
 from model.worker import Worker
 from view.admin_ui import AdminUi
@@ -85,7 +85,7 @@ class AdminController(QMainWindow):
             button.clicked.connect(lambda _, w=worker: self.button_show_summary(w))
             
     def button_show_summary(self,worker:Worker):
-        weeks=Weekdao.get_weeks(worker.worker_id)
+        weeks=WeekDao.get_weeks(worker.worker_id)
         self.view.show_summary(weeks)
         
     def close_btn_clicked(self):
