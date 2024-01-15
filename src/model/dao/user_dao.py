@@ -32,6 +32,15 @@ class UserDao:
                 WHERE user_id = ?
             ''', (user_id,))
         return User(*user[0]) if user else None
+
+    @staticmethod
+    def update_password(user_id: str, salt: bytes, hash: bytes):
+        with db_connection_service() as conn:
+            conn.querry('''
+                UPDATE users
+                SET salt = ?, hash = ?
+                WHERE worker_id = ? 
+            ''', (salt, hash, user_id))
         
     @staticmethod
     def delete_User(user_id:str):
