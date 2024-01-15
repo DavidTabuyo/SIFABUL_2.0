@@ -12,10 +12,10 @@ class NotificationWorkerDao:
             ''', (worker_id, notification_id, seen))
 
     @staticmethod
-    def update_notification_status(worker_id: str, notification_id: str, seen: str):
+    def update_notification_status(worker_id: str, seen: str):
         with db_connection_service() as conn:
             conn.querry('''
                 UPDATE workers_notifictions
                 SET seen = ?
-                WHERE worker_id = ? AND notification_id = ?;
-            ''', (seen, worker_id, notification_id))
+                WHERE worker_id = ?; 
+            ''', (seen, worker_id))

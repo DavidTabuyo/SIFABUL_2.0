@@ -8,4 +8,8 @@ class Notification:
     def get_output(self) -> str:
         # Construir el string formateado
         return  f"Título: {self.title}\nFecha y Hora: {self.datetime}\n\nDescripción: {self.description}"
+
+    @property
+    def is_all_seen(self):
+        ...
         
