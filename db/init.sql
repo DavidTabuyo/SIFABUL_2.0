@@ -15,7 +15,7 @@ CREATE TABLE workers (
     worker_id TEXT,
     admin_id TEXT NOT NULL,
     PRIMARY KEY (worker_id),
-    FOREIGN KEY (worker_id) REFERENCES users(user_id),
+    FOREIGN KEY (worker_id) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (admin_id) REFERENCES admins(admin_id)
 );
 
@@ -33,7 +33,7 @@ CREATE TABLE workers_notifications (
     notification_id INTEGER,
     seen DATETIME,
     PRIMARY KEY (worker_id, notification_id),
-    FOREIGN KEY (worker_id) REFERENCES workers(worker_id),
+    FOREIGN KEY (worker_id) REFERENCES workers(worker_id) ON DELETE CASCADE,
     FOREIGN KEY (notification_id) REFERENCES notifications(notification_id)
 );
 
@@ -45,7 +45,7 @@ CREATE TABLE checks (
     time TIME,
     is_entry INTEGER,
     PRIMARY KEY (worker_id, date, time),
-    FOREIGN KEY (worker_id) REFERENCES workers(worker_id)
+    FOREIGN KEY (worker_id) REFERENCES workers(worker_id) ON DELETE CASCADE
 );
 
 CREATE TABLE weeks (
@@ -53,5 +53,20 @@ CREATE TABLE weeks (
     monday DATE,
     total INTEGER NOT NULL,
     PRIMARY KEY (worker_id, monday),
-    FOREIGN KEY (worker_id) REFERENCES workers(worker_id)
+    FOREIGN KEY (worker_id) REFERENCES workers(worker_id) ON DELETE CASCADE
 );
+
+
+
+CREATE TRIGGER clean_notifications
+AFTER DELETE ON workers_notifications
+FOR EACH ROW
+BEGIN
+    DELETE FROM notifications
+    WHERE notifications.notification_id = OLD.notification_id
+        AND NOT EXISTS (
+            SELECT 1
+            FROM workers_notifications
+            WHERE workers_notifications.notification_id = OLD.notification_id 
+        );
+END;
