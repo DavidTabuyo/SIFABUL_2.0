@@ -1,13 +1,12 @@
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QDialog
 
 from model.dao.admin_dao import AdminDao
 from model.dao.user_dao import UserDao
-from model.user import User
 from model.worker import Worker
 from view.edit_worker_list_ui import EditWorkerListUi
 
 
-class EditWorkerListController(QMainWindow):
+class EditWorkerListController(QDialog):
     def __init__(self, main_controller, admin_id:str) -> None:
         super().__init__()
         self.main_controller = main_controller
@@ -51,7 +50,7 @@ class EditWorkerListController(QMainWindow):
         
     
     def btn_change_password_clicked(self):
-        self.main_controller.change_controller('changepassword',self.admin.admin_id,self.view.get_selected_worker())
+        self.close()
         
     def change_name(self):
         user= UserDao.get_user(self.view.get_selected_worker())

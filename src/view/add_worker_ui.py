@@ -269,7 +269,6 @@ class AddWorkerUi(object):
         self.btm_accept.setObjectName("btm_accept")
         self.horizontalLayout.addWidget(self.btm_accept)
         self.verticalLayout_3.addLayout(self.horizontalLayout)
-        MainWindow.setCentralWidget(self.centralwidget)
         self.admin_le.setText(admin_id)
         self.admin_le.setDisabled(True)
 

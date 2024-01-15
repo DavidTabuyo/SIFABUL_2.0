@@ -1,11 +1,11 @@
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QDialog
 import bcrypt
 from model.dao.user_dao import UserDao
 
 from view.change_password_ui import ChangePasswordUi
 
 
-class ChangePasswordController(QMainWindow):
+class ChangePasswordController(QDialog):
     def __init__(self, main_controller, changer_id: str, target_id: str) -> None:
         super().__init__()
         self.main_controller = main_controller
@@ -35,12 +35,7 @@ class ChangePasswordController(QMainWindow):
     def returnToController(self):
 
         if UserDao.is_admin(self.changer.getId()):
-            self.main_controller.change_controller(
-                'admin', self.changer.getId())
-        else:
-            self.main_controller.change_controller(
-                'worker', self.changer.getId())
-
+            self.close()
     def change_password(self, old_pssw: str, new_pssw: str):
         if bcrypt.hashpw(old_pssw.encode('utf-8'), self.target.salt) != self.target.hash:
             raise ValueError('Contraseña incorrecta')

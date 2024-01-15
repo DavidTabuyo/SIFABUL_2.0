@@ -1,3 +1,4 @@
+from PyQt5.QtWidgets import QMainWindow, QDialog
 from controller.admin_controller import AdminController
 from controller.change_password_controller import ChangePasswordController
 from controller.edit_worker_list_controller import EditWorkerListController
@@ -23,4 +24,7 @@ class MainController:
         
     def change_controller(self, new_controler_name, *args):
         self.current_controller = self.CONTROLLERS[new_controler_name](self, *args)
-        self.current_controller.show()
+        if isinstance(self.current_controller, QMainWindow):
+            self.current_controller.show()
+        elif isinstance(self.current_controller, QDialog):
+            self.current_controller.exec()

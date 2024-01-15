@@ -178,7 +178,6 @@ class SendNotificationUi(object):
         "    padding: 5px;")
         self.select_worker_cb.setObjectName("select_worker_cb")
         self.select_worker_cb.setPlaceholderText("Inserte los destinatarios separados por ;")
-        # MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)

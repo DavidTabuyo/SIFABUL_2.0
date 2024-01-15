@@ -35,7 +35,7 @@ class SendNotificationController(QDialog):
             self.add_notification()
             self.view.send_advise()
             self.close()
-            self.main_controller.change_controller('admin',self.admin.admin_id)
+            # self.main_controller.change_controller('admin',self.admin.admin_id)
         except Exception as e:
             self.view.showError(e)
 

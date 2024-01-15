@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QDialog
 import bcrypt
 from model.dao.admin_dao import AdminDao
 from model.dao.user_dao import UserDao
@@ -6,7 +6,7 @@ from model.worker import Worker
 from view.add_worker_ui import AddWorkerUi
 
 
-class AddWorkerController(QMainWindow):
+class AddWorkerController(QDialog):
     def __init__(self, main_controller, admin_id:str) -> None:
         super().__init__()
         self.main_controller = main_controller
@@ -36,7 +36,7 @@ class AddWorkerController(QMainWindow):
             #send an advise
             self.view.change_correct()
             #change controller
-            self.main_controller.change_controller('admin',self.admin.admin_id)
+            self.close()
             
         except Exception as e:
             self.view.showError(e)

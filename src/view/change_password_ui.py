@@ -123,7 +123,6 @@ class ChangePasswordUi(object):
         self.cancel_btn.setFont(font)
         self.cancel_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.cancel_btn.setObjectName("cancel_btn")
-        MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)

@@ -197,7 +197,6 @@ class EditWorkerListUi(object):
         self.label_7.setFont(font)
         self.label_7.setStyleSheet("color:rgba(0, 0, 0, 200);")
         self.label_7.setObjectName("label_7")
-        MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
