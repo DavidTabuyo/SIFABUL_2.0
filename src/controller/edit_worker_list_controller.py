@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QMainWindow
 
 from model.dao.admin_dao import AdminDao
 from model.dao.user_dao import UserDao
+from model.user import User
 from model.worker import Worker
 from view.edit_worker_list_ui import EditWorkerListUi
 
@@ -37,6 +38,9 @@ class EditWorkerListController(QMainWindow):
     def btn_accept_clicked(self):
         try:
             #mirar que ha modificado y modificarlo
+            if len(self.view.username_le.text())==0:
+                raise TypeError("No has realizado ninguna accion")
+            self.change_name()
             self.close()
         except Exception as e:
             self.view.showError(e)
@@ -48,6 +52,11 @@ class EditWorkerListController(QMainWindow):
     
     def btn_change_password_clicked(self):
         self.main_controller.change_controller('changepassword',self.admin.admin_id,self.view.get_selected_worker())
+        
+    def change_name(self):
+        user= UserDao.get_user(self.view.get_selected_worker())
+        user.name=self.view.username_le.text()
+        UserDao.update(user)
 
     
 

@@ -1,7 +1,8 @@
 from PyQt5.QtWidgets import QMainWindow
+import bcrypt
 from model.dao.admin_dao import AdminDao
 from model.dao.user_dao import UserDao
-
+from model.worker import Worker
 from view.add_worker_ui import AddWorkerUi
 
 
@@ -50,6 +51,6 @@ class AddWorkerController(QMainWindow):
 
     
     def add_worker(self):
-        ...
-
-        
+        salt = bcrypt.gensalt()
+        hash = bcrypt.hashpw(self.view.password_le.text().encode('utf-8'), salt)
+        AdminDao.add_worker(Worker(self.view.name_le.text(),self.view.name_le_2.text(),salt,hash,self.admin.admin_id),self.admin.admin_id)

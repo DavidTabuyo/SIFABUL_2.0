@@ -169,6 +169,7 @@ class EditWorkerListUi(object):
                                "padding: 5px;")
         self.workers_cb.setItemDelegate(QtWidgets.QStyledItemDelegate())  # Set item delegate to handle combobox text color
         self.workers_cb.setObjectName("workers_cb")
+        
         self.change_password_btn = QtWidgets.QPushButton(self.widget)
         self.change_password_btn.setGeometry(QtCore.QRect(150, 280, 171, 27))
         font = QtGui.QFont()

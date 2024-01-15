@@ -10,7 +10,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from model.week import Week
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 

@@ -31,11 +31,11 @@ class SendNotificationController(QMainWindow):
         self.close()
     
     def send_btn_clicked(self):
-        self.add_notification()
-
         try:
+            self.add_notification()
             self.view.send_advise()
             self.close()
+            self.main_controller.change_controller('admin',self.admin.admin_id)
         except Exception as e:
             self.view.showError(e)
 
@@ -43,15 +43,15 @@ class SendNotificationController(QMainWindow):
         
     def add_notification(self):
         #add notification, show error if no worker selected
+        if len(self.view.title_edit.text())==0 or len(self.view.body_edit.text())==0:
+            raise TypeError("El asunto o la descripción no pueden estar vacíos")
         selected_workers  =  self.view.select_worker_cb.text().split(';')
         if not selected_workers:
             raise ValueError('No has seleccionado ningún destinatario')
         notification_id= NotificationDao.get_notifications(self.admin.admin_id)[-1].notification_id+1
         NotificationDao.add_notification(self.view.title_edit.text(),self.view.body_edit.text(),get_current_time()[3])
-        print(notification_id)
         for worker_id in selected_workers:       
             if UserDao.is_worker(worker_id):
-                print(worker_id,self.admin.admin_id)
                 NotificationWorkerDao.add_notification_worker(worker_id,notification_id,None)
             else:
                 raise TypeError('No existe un trabajdor con el nombre de usuario: ',worker_id)

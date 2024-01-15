@@ -11,9 +11,4 @@ class Notification:
     def get_output(self) -> str:
         # Construir el string formateado
         return  f"Título: {self.title}\nFecha y Hora: {self.datetime}\n\nDescripción: {self.description}"
-
-    @property
-    def is_all_seen(self):
-        notifications = NotificationWorkerDao.get_notifications_by_notification(self.notification_id)
-        all(notification.seen for notification in notifications)
         

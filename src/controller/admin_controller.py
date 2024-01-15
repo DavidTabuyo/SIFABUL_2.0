@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import QtWidgets
 from model.dao.admin_dao import AdminDao
 from model.dao.notification_dao import NotificationDao
+from model.dao.notification_worker_dao import NotificationWorkerDao
 from model.dao.week_dao import WeekDao
 from model.notification import Notification
 from model.worker import Worker
@@ -43,6 +44,9 @@ class AdminController(QMainWindow):
     def update_notifications(self):
         self.view.clear_layout(self.view.notifications_layout)
         notList= self.get_notifications()
+        for notification in notList:
+            references=NotificationWorkerDao.get_notifications_by_notification(notification.notification_id)
+            notification.is_all_seen=all(reference.seen for reference in references)
         self.view.show_notifications(notList)
 
     def change_password_btn_clicked(self):

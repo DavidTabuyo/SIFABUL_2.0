@@ -418,10 +418,10 @@ class AdminUi(object):
             self.notifications_layout.addWidget(label)
             label.setAlignment(QtCore.Qt.AlignCenter)
             label.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-            label.setFixedWidth(575)
+            label.setFixedWidth(560)
             label.setWordWrap(True)
             #if all workers has seen the notificarion
-            if 1:#i.is_seen:
+            if i.is_all_seen:
                 label.setStyleSheet('background-color: green;font-size: 20px;border-radius: 10px;')
             else:
                 label.setStyleSheet('background-color: red;font-size: 20px;border-radius: 10px;')
