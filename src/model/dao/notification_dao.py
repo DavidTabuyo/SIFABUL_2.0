@@ -13,6 +13,7 @@ class NotificationDao:
                 JOIN workers_notifications ON notifications.notification_id = workers_notifications.notification_id
                 JOIN workers ON workers_notifications.worker_id = workers.worker_id
                 WHERE workers.admin_id = ?
+                SORT BY notifications.notificaion_id
             ''', (admin_id,))
 
         return [Notification(*notification) for notification in notifications_data]
