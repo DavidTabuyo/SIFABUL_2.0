@@ -19,6 +19,8 @@ class EditWorkerListUi(object):
         MainWindow.resize(800, 600)
         MainWindow.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         MainWindow.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+        icon_path = "assets/sifabulchiquito.html" 
+        MainWindow.setWindowIcon(QtGui.QIcon(icon_path))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.widget = QtWidgets.QWidget(self.centralwidget)

@@ -19,6 +19,8 @@ class WorkerUi(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1397, 859)
+        icon_path = "assets/sifabulchiquito.html" 
+        MainWindow.setWindowIcon(QtGui.QIcon(icon_path))
         MainWindow.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         MainWindow.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
