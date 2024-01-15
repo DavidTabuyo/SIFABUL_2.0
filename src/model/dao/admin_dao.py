@@ -29,21 +29,14 @@ class AdminDao:
         return [Worker(*worker) for worker in workers_data]
 
     @staticmethod
-    def add_worker(worker: Worker):
+    def add_worker(worker: Worker, admin_id: str):
         with db_connection_service() as conn:
-            # Insertar en la tabla 'users'
-            conn.execute('''
+            conn.querry('''
                 INSERT INTO users (user_id, name, salt, hash)
                  VALUES (?, ?, ?, ?)
              ''', (worker.worker_id, worker.name, worker.salt, worker.hash))
 
-             # Insertar en la tabla 'admins'
-            conn.execute('''
-                INSERT INTO admins (admin_id)
-                VALUES (?)
-            ''', (worker.worker_id,))
-                # Insertar en la tabla 'workers'
-            conn.execute('''
+            conn.querry('''
                 INSERT INTO workers (worker_id, admin_id)
                     VALUES (?, ?)
-                ''', (worker.worker_id, worker.admin_id))
+                ''', (worker.worker_id, admin_id))
