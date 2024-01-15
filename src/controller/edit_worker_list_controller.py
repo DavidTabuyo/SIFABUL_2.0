@@ -50,7 +50,7 @@ class EditWorkerListController(QDialog):
         
     
     def btn_change_password_clicked(self):
-        self.close()
+        self.main_controller.change_controller('changepassword',self.admin.admin_id,self.view.get_selected_worker())
         
     def change_name(self):
         user= UserDao.get_user(self.view.get_selected_worker())

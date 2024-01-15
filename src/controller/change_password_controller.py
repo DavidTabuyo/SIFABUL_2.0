@@ -21,21 +21,17 @@ class ChangePasswordController(QDialog):
         self.target = UserDao.get_user(target_id)
 
     def cancel_btn_clicked(self):
-        self.returnToController()
+        self.close()
 
     def accept_btn_clicked(self):
         try:
             self.change_password(
                 self.view.old_password_imp.text(), self.view.new_password_imp.text())
             self.view.change_correct()
-            self.returnToController()
+            self.close()
         except ValueError as e:
             self.view.showError(e)
 
-    def returnToController(self):
-
-        if UserDao.is_admin(self.changer.getId()):
-            self.close()
     def change_password(self, old_pssw: str, new_pssw: str):
         if bcrypt.hashpw(old_pssw.encode('utf-8'), self.target.salt) != self.target.hash:
             raise ValueError('Contraseña incorrecta')
