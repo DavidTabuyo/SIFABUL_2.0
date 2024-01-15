@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import QtWidgets
 from model.dao.admin_dao import AdminDao
+from model.dao.notification_dao import NotificationDao
 from model.dao.week_dao import WeekDao
 from model.notification import Notification
 from model.worker import Worker
@@ -21,8 +22,6 @@ class AdminController(QMainWindow):
         self.view.refresh_btn.clicked.connect(self.update_btn_clicked)
         self.view.add_worker_btn.clicked.connect(self.add_btn_clicked)
         self.view.close_btn.clicked.connect(self.close_btn_clicked)
-        self.view.delete_btn.clicked.connect(self.delete_btn_clicked)
-
         
         
         #model
@@ -70,7 +69,7 @@ class AdminController(QMainWindow):
         return AdminDao.get_workers(self.admin.getID())
         
     def get_notifications(self)->list[Notification]:
-        return AdminDao.get_notifications(self.admin.getID())
+        return NotificationDao.get_notifications(self.admin.getID())
     
     def show_workers(self, workerList: list[Worker]):
         for worker in workerList:
@@ -91,6 +90,3 @@ class AdminController(QMainWindow):
         
     def close_btn_clicked(self):
         self.close()
-    
-    def delete_btn_clicked(self):
-        self.view.clear_layout(self.view.notifications_layout)

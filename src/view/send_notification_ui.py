@@ -169,14 +169,15 @@ class SendNotificationUi(object):
 "    padding: 5px;")
         self.body_edit.setText("")
         self.body_edit.setObjectName("body_edit")
-        self.select_worker_cb = QtWidgets.QComboBox(self.widget)
+        self.select_worker_cb = QtWidgets.QLineEdit(self.widget)
         self.select_worker_cb.setGeometry(QtCore.QRect(100, 130, 451, 30))
         self.select_worker_cb.setStyleSheet("background-color: rgba(0, 0, 0, 0);\n"
-"    border: 2px solid rgba(46, 82, 101, 200);\n"
-"    border-radius: 5px;\n"
-"    color: rgba(0, 0, 0, 240);\n"
-"    padding: 5px;")
+        "    border: 2px solid rgba(46, 82, 101, 200);\n"
+        "    border-radius: 5px;\n"
+        "    color: rgba(0, 0, 0, 240);\n"
+        "    padding: 5px;")
         self.select_worker_cb.setObjectName("select_worker_cb")
+        self.select_worker_cb.setPlaceholderText("Inserte los destinatarios separados por ;")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
