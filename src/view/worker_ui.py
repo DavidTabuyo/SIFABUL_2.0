@@ -13,6 +13,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 
+from services.summary_graph import summary_display
+
 class WorkerUi(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -468,40 +470,7 @@ class WorkerUi(object):
 
 
     def show_summary(self,weeks):
-        # Ordenar las semanas por fecha
-        weeks.sort(key=lambda x: datetime.strptime(x.monday, "%Y-%m-%d"))
-
-        # Tomar las 10 últimas semanas
-        last_10_weeks = weeks[-10:]
-
-        # Crear listas de fechas, horas trabajadas y colores
-        fechas = [(datetime.strptime(week.monday, "%Y-%m-%d") + timedelta(days=7)).strftime("%Y-%m-%d") for week in last_10_weeks]
-        horas_trabajadas = [week.get_total_hours() for week in last_10_weeks]
-        colores = ['red' if hour < 10 else 'green' for hour in horas_trabajadas]
-
-        # Crear el gráfico de barras
-        plt.figure(figsize=(10, 6))
-        bars = plt.bar(fechas, horas_trabajadas, color=colores, label='Horas trabajadas')
-
-        # Línea roja de puntos en y=10
-        plt.axhline(y=10, color='r', linestyle='--', label='_nolegend_')
-
-        # Mostrar el número de horas en formato "hh h mm min" en cada barra
-        for bar, week in zip(bars, last_10_weeks):
-            height = bar.get_height()
-            formatted_total = week.get_formatted_total()
-            plt.text(bar.get_x() + bar.get_width() / 2, height, formatted_total, ha='center', va='bottom')
-
-        # Personalizar el gráfico
-        plt.title('Resumen semanal')
-        plt.ylabel('Horas trabajadas')
-        plt.xticks(rotation=45, ha='right')  # Rotar las fechas en el eje x
-        plt.ylim(0, 12)  # Rango del eje y hasta 12 horas
-        plt.legend()
-
-        # Mostrar el gráfico
-        plt.tight_layout()
-        plt.show(block=False)
+        summary_display(weeks)
     
     def set_user(self, username:str):
         self.label_7.setText(username)

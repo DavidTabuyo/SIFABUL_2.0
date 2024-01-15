@@ -1,9 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication
-from controller.login_controller import LoginController
 from controller.main_controller import MainController
-from model.dao.notification_dao import NotificationDao
-from model.dao.user_dao import UserDao
 
 
 if __name__ == '__main__':
