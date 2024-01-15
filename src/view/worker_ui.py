@@ -413,7 +413,7 @@ class WorkerUi(object):
         
     def addChecks(self,checks):
         for object in checks:
-            label = QtWidgets.QLabel(object.get_output())
+            label = QtWidgets.QLabel(object.time)
             self.layoutFichajes.addWidget(label)
             label.setAlignment(QtCore.Qt.AlignCenter)
             label.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)

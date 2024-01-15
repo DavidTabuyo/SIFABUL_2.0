@@ -69,7 +69,7 @@ class WorkerController(QMainWindow):
 
     def check(self):
         # get actual time
-        monday, date, time = get_current_time()
+        monday, date, time, _ = get_current_time()
 
         # get last check
         last_check = WorkerDao.get_last_today_check(self.worker.worker_id, date)
