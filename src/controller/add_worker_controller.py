@@ -35,7 +35,7 @@ class AddWorkerController(QMainWindow):
             #send an advise
             self.view.change_correct()
             #change controller
-            self.main_controller.change_controller('admin',self.admin.getID())
+            self.main_controller.change_controller('admin',self.admin.admin_id)
             
         except Exception as e:
             self.view.showError(e)

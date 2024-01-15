@@ -9,5 +9,3 @@ class Worker:
     def get_output_for_list(self) ->str:
         return self.worker_id+": "+self.name
     
-    def getID(self) ->str:
-        return self.worker_id

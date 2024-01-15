@@ -29,7 +29,7 @@ class EditWorkerListController(QMainWindow):
         
         
     def get_workers(self)-> list[Worker]:
-        return AdminDao.get_workers(self.admin.getID())
+        return AdminDao.get_workers(self.admin.admin_id)
     
     def btn_cancel_clicked(self):
         self.close()
@@ -47,7 +47,7 @@ class EditWorkerListController(QMainWindow):
         
     
     def btn_change_password_clicked(self):
-        self.main_controller.change_controller('changepassword',self.admin.getID(),self.view.get_selected_worker())
+        self.main_controller.change_controller('changepassword',self.admin.admin_id,self.view.get_selected_worker())
 
     
 

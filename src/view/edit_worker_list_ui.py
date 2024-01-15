@@ -230,7 +230,7 @@ class EditWorkerListUi(object):
 
         
     def show_workers(self,workers:list[Worker]):
-        id_list = [worker.getID() for worker in workers]
+        id_list = [worker.worker_id for worker in workers]
         self.workers_cb.addItems(id_list)
 
     

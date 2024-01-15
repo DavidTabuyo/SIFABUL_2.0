@@ -31,7 +31,7 @@ class AdminController(QMainWindow):
         #update view
         self.update_notifications()
         self.update_worker_list()
-        self.view.set_user(self.admin.getID())
+        self.view.set_user(self.admin.admin_id)
         
         
     def update_worker_list(self):
@@ -46,19 +46,19 @@ class AdminController(QMainWindow):
         self.view.show_notifications(notList)
 
     def change_password_btn_clicked(self):
-        self.main_controller.change_controller('changepassword',self.admin.getID(), self.admin.getID())
+        self.main_controller.change_controller('changepassword',self.admin.admin_id, self.admin.admin_id)
 
     
     def edit_list_btn_clicked(self):
-        self.main_controller.change_controller('editworkerlist',self.admin.getID())
+        self.main_controller.change_controller('editworkerlist',self.admin.admin_id)
 
     
     def send_notification_btn_clicked(self):
-        self.main_controller.change_controller('sendnotification',self.admin.getID())
+        self.main_controller.change_controller('sendnotification',self.admin.admin_id)
 
         
     def add_btn_clicked(self):
-        self.main_controller.change_controller('addworker',self.admin.getID())
+        self.main_controller.change_controller('addworker',self.admin.admin_id)
 
     
     def update_btn_clicked(self):
@@ -66,10 +66,10 @@ class AdminController(QMainWindow):
         self.update_worker_list()
 
     def get_workers(self)->list[Worker]:
-        return AdminDao.get_workers(self.admin.getID())
+        return AdminDao.get_workers(self.admin.admin_id)
         
     def get_notifications(self)->list[Notification]:
-        return NotificationDao.get_notifications(self.admin.getID())
+        return NotificationDao.get_notifications(self.admin.admin_id)
     
     def show_workers(self, workerList: list[Worker]):
         for worker in workerList:
