@@ -47,7 +47,7 @@ class EditWorkerListController(QMainWindow):
         
     
     def btn_change_password_clicked(self):
-        self.main_controller.change_controller('changepassword',self.view.get_selected_worker(),self.admin.getID())
+        self.main_controller.change_controller('changepassword',self.admin.getID(),self.view.get_selected_worker())
 
     
 

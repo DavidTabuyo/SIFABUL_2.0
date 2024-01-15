@@ -5,7 +5,7 @@ from view.change_password_ui import ChangePasswordUi
 
 
 class ChangePasswordController(QMainWindow):
-    def __init__(self, main_controller,user_id:str) -> None:
+    def __init__(self, main_controller,changer_id:str,target_id:str) -> None:
         super().__init__()
         self.main_controller = main_controller
         
@@ -16,7 +16,9 @@ class ChangePasswordController(QMainWindow):
         self.view.accept_btn.clicked.connect(self.accept_btn_clicked)
         
         #model
-        self.user=UserDao.get_user(user_id)
+        self.changer=UserDao.get_user(changer_id)
+        self.target=UserDao.get_user(target_id)
+        
         
         
     def cancel_btn_clicked(self):
@@ -32,10 +34,10 @@ class ChangePasswordController(QMainWindow):
         
     def returnToController(self):
                 
-        if UserDao.is_admin(self.user.getId()):
-            self.main_controller.change_controller('admin',self.user.getId())
+        if UserDao.is_admin(self.changer.getId()):
+            self.main_controller.change_controller('admin',self.changer.getId())
         else:
-            self.main_controller.change_controller('worker',self.user.getId())
+            self.main_controller.change_controller('worker',self.changer.getId())
         
 
 

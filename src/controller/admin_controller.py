@@ -47,7 +47,7 @@ class AdminController(QMainWindow):
         self.view.show_notifications(notList)
 
     def change_password_btn_clicked(self):
-        self.main_controller.change_controller('changepassword',self.admin.getID())
+        self.main_controller.change_controller('changepassword',self.admin.getID(), self.admin.getID())
 
     
     def edit_list_btn_clicked(self):

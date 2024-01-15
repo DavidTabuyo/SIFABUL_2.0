@@ -22,10 +22,5 @@ class MainController:
         self.current_controller = None
         
     def change_controller(self, new_controler_name, *args):
-        if len(args) == 2:
-            _,arg2=args
-            self.current_controller=self.CONTROLLERS[new_controler_name](self,arg2)
-        else:
-            self.current_controller = self.CONTROLLERS[new_controler_name](self, *args)
-
+        self.current_controller = self.CONTROLLERS[new_controler_name](self, *args)
         self.current_controller.show()

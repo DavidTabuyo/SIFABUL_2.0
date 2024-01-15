@@ -59,7 +59,7 @@ class WorkerController(QMainWindow):
         self.view.show_summary(weeks)
         
     def btnChangePassword_clicked(self):
-        self.main_controller.change_controller('changepassword',self.worker.worker_id)
+        self.main_controller.change_controller('changepassword',self.worker.worker_id,self.worker.worker_id)
 
     def refresh_btn_clicked(self):
         self.update_notifications()
