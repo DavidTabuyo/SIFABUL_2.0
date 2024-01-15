@@ -19,18 +19,6 @@ class WorkerDao:
         return Worker(*worker[0]) if worker else None
 
     @staticmethod
-    def get_notifications(worker_id: str) -> list[NotificationWorker]:
-        with db_connection_service() as conn:
-            notifications = conn.querry('''
-                SELECT notifications.notification_id, notifications.title, notifications.description, notifications.datetime, workers_notifications.seen
-                FROM notifications
-                JOIN workers_notifications on notifications.notification_id = workers_notifications.notification_id
-                WHERE workers_notifications.worker_id = ?
-                ORDER BY notifications.datetime DESC
-            ''', (worker_id,))
-        return [NotificationWorker(*notification) for notification in notifications]
-
-    @staticmethod
     def get_today_checks(worker_id: str, date: str) -> list[Check]:
         with db_connection_service() as conn:
             today_checks = conn.querry('''
