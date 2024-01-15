@@ -15,12 +15,10 @@ class LoginController(QMainWindow):
 
     # boton aceptar
     def BotonOk_clicked(self):
-        self.main_controller.change_controller(self.login(self.view.UserName.text(), self.view.Password.text()),self.view.UserName.text())
-
         # check if correct
         try:
-            ...
-        except Exception as e:
+            self.main_controller.change_controller(self.login(self.view.UserName.text(), self.view.Password.text()),self.view.UserName.text())
+        except (LookupError, ValueError) as e:
             self.view.showError(e)
         
     def btn_cancel_clicked(self):

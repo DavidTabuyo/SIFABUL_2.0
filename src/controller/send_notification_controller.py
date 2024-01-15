@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QDialog
 
 from model.dao.admin_dao import AdminDao
 from model.dao.notification_dao import NotificationDao
@@ -9,7 +9,7 @@ from view.send_notification_ui import SendNotificationUi
 
 
 
-class SendNotificationController(QMainWindow):
+class SendNotificationController(QDialog):
     def __init__(self, main_controller,admin_id:str) -> None:
         super().__init__()
         self.main_controller = main_controller
@@ -45,14 +45,18 @@ class SendNotificationController(QMainWindow):
         #add notification, show error if no worker selected
         if len(self.view.title_edit.text())==0 or len(self.view.body_edit.text())==0:
             raise TypeError("El asunto o la descripción no pueden estar vacíos")
+            
         selected_workers  =  self.view.select_worker_cb.text().split(';')
         if not selected_workers:
             raise ValueError('No has seleccionado ningún destinatario')
+            
+        for worker_id in selected_workers:       
+            if not UserDao.is_worker(worker_id):
+                raise TypeError('No existe un trabajdor con el nombre de usuario: ',worker_id)
+
         notification_id= NotificationDao.get_notifications(self.admin.admin_id)[-1].notification_id+1
         NotificationDao.add_notification(self.view.title_edit.text(),self.view.body_edit.text(),get_current_time()[3])
+
         for worker_id in selected_workers:       
-            if UserDao.is_worker(worker_id):
-                NotificationWorkerDao.add_notification_worker(worker_id,notification_id,None)
-            else:
-                raise TypeError('No existe un trabajdor con el nombre de usuario: ',worker_id)
+            NotificationWorkerDao.add_notification_worker(worker_id,notification_id,None)
             
