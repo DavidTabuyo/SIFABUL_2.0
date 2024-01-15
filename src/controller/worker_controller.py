@@ -41,7 +41,7 @@ class WorkerController(QMainWindow):
     
     def update_notifications(self):
         self.view.clear_layout(self.view.notifications_layout)
-        notifications=[notification for notification in NotificationWorkerDao.get_notifications(self.worker.getID()) if not notification.seen]
+        notifications=[notification for notification in NotificationWorkerDao.get_notifications_by_worker(self.worker.getID()) if not notification.seen]
         if notifications:
             self.view.addNotifications(notifications)
         else:

@@ -18,7 +18,7 @@ class NotificationDao:
         return [Notification(*notification) for notification in notifications_data]
 
     @staticmethod
-    def addNotification(title: str, description: str, datetime: str):
+    def add_notification(title: str, description: str, datetime: str):
         with db_connection_service() as conn:
             conn.querry('''
                 INSERT INTO notifications (title, description, datetime) VALUES
