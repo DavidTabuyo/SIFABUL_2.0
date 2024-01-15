@@ -5,6 +5,7 @@ from model.dao.check_dao import CheckDao
 from model.dao.week_dao import WeekDao
 from model.dao.worker_dao import WorkerDao
 from model.dao.notification_worker_dao import NotificationWorkerDao
+from services.current_time import get_current_time
 from view.worker_ui import WorkerUi
 
 
@@ -35,7 +36,7 @@ class WorkerController(QMainWindow):
         
     def update_checks(self):
         self.view.clear_layout(self.view.layoutFichajes)
-        checks = WorkerDao.get_today_checks(self.worker.getID(), self.get_current_time()[1])
+        checks = WorkerDao.get_today_checks(self.worker.getID(), get_current_time()[1])
         self.view.addChecks(checks)
         
     
@@ -66,17 +67,9 @@ class WorkerController(QMainWindow):
     def refresh_btn_clicked(self):
         self.update_notifications()
 
-    def get_current_time(self) -> tuple[str, str, str]:
-        timestamp = arrow.get(requests.get('http://worldtimeapi.org/api/timezone/Europe/Madrid').json()['datetime'])
-        monday = timestamp.floor('week').format('YYYY-MM-DD')
-        date = timestamp.format('YYYY-MM-DD')
-        time = timestamp.format('HH:mm:ss')
-        datetime= timestamp.format('YYYY-MM-DD HH:mm:ss')
-        return (monday, date, time, datetime)
-
     def check(self):
         # get actual time
-        monday, date, time = self.get_current_time()
+        monday, date, time = get_current_time()
 
         # get last check
         last_check = WorkerDao.get_last_today_check(self.worker.getID(), date)
@@ -106,7 +99,7 @@ class WorkerController(QMainWindow):
         self.close()
     
     def delete_btn_clicked(self):
-        NotificationWorkerDao.update_notification_status(self.worker.getID(),self.get_current_time()[3])
+        NotificationWorkerDao.update_notification_status(self.worker.getID(), get_current_time()[3])
         self.view.clear_layout(self.view.notifications_layout)
         self.view.show_label()
     
