@@ -15,7 +15,7 @@ class NotificationWorkerDao:
     def update_notification_status(worker_id: str, seen: str):
         with db_connection_service() as conn:
             conn.querry('''
-                UPDATE workers_notifictions
+                UPDATE workers_notifications
                 SET seen = ?
                 WHERE worker_id = ?; 
             ''', (seen, worker_id))

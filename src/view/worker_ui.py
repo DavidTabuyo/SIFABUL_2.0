@@ -446,6 +446,7 @@ class WorkerUi(object):
             )     
             layout.addWidget(check_label)
             
+            
     def showError(self, e):
             error_message = QtWidgets.QMessageBox()
             error_message.setIcon(QtWidgets.QMessageBox.Critical)
@@ -456,17 +457,17 @@ class WorkerUi(object):
             
     def addNotifications(self,notList):
         for i in notList:
-            label = QtWidgets.QLabel(i.get_output())
-            self.notifications_layout.addWidget(label)
-            label.setAlignment(QtCore.Qt.AlignCenter)
-            label.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-            if i.seen:
+            if not i.seen:
+                label = QtWidgets.QLabel(i.get_output())
+                self.notifications_layout.addWidget(label)
+                label.setAlignment(QtCore.Qt.AlignCenter)
+                label.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
                 label.setStyleSheet(
-                    'background-color: green;font-size: 20px;border-radius: 10px;')
-            else:
-                label.setStyleSheet(
-                    'background-color: red;font-size: 20px;border-radius: 10px;')
-    
+                'background-color: #2c313c; color: white; font-size: 20px; border-radius: 10px;')
+                label.setFixedWidth(605)
+                label.setWordWrap(True)
+
+
     def show_summary(self,weeks):
         # Ordenar las semanas por fecha
         weeks.sort(key=lambda x: datetime.strptime(x.monday, "%Y-%m-%d"))
@@ -505,15 +506,20 @@ class WorkerUi(object):
     
     def set_user(self, username:str):
         self.label_7.setText(username)
+    
+    def show_label(self):
+        not_label = QtWidgets.QLabel()
+        not_label.setText('NO HAY NOTIFICACIONES')
+        not_label.setAlignment(QtCore.Qt.AlignCenter)
+        not_label.setStyleSheet(
+                "QLabel {"
+                "   font-family: Decorative;"
+                "   font-size: 20px;"
+                "   color: black;"
+                "   background-color: #FFB6C1;" 
+                "}")
+        self.notifications_layout.addWidget(not_label)
+        
 
                     
     
-    
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    BECARIO = QtWidgets.QMainWindow()
-    ui = WorkerUi()
-    ui.setupUi(BECARIO)
-    BECARIO.show()
-    sys.exit(app.exec_())

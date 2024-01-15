@@ -2,7 +2,6 @@ from PyQt5.QtWidgets import QMainWindow
 import arrow
 import requests
 from model.dao.check_dao import CheckDao
-from model.dao.user_dao import UserDao
 from model.dao.week_dao import WeekDao
 from model.dao.worker_dao import WorkerDao
 from model.dao.notification_worker_dao import NotificationWorkerDao
@@ -42,8 +41,11 @@ class WorkerController(QMainWindow):
     
     def update_notifications(self):
         self.view.clear_layout(self.view.notifications_layout)
-        notifications=WorkerDao.get_notifications(self.worker.getID())
-        self.view.addNotifications(notifications)
+        notifications=[notification for notification in NotificationWorkerDao.get_notifications(self.worker.getID()) if not notification.seen]
+        if notifications:
+            self.view.addNotifications(notifications)
+        else:
+            self.view.show_label()
     
     def BtnCheck_clicked(self):
         try:
@@ -69,7 +71,8 @@ class WorkerController(QMainWindow):
         monday = timestamp.floor('week').format('YYYY-MM-DD')
         date = timestamp.format('YYYY-MM-DD')
         time = timestamp.format('HH:mm:ss')
-        return (monday, date, time)
+        datetime= timestamp.format('YYYY-MM-DD HH:mm:ss')
+        return (monday, date, time, datetime)
 
     def check(self):
         # get actual time
@@ -103,8 +106,8 @@ class WorkerController(QMainWindow):
         self.close()
     
     def delete_btn_clicked(self):
-        notifications=WorkerDao.get_notifications(self.worker.getID())
-        #NotificationWorkerdao.update_notifications_status()
+        NotificationWorkerDao.update_notification_status(self.worker.getID(),self.get_current_time()[3])
         self.view.clear_layout(self.view.notifications_layout)
+        self.view.show_label()
     
     
