@@ -45,6 +45,6 @@ class ChangePasswordController(QMainWindow):
         if bcrypt.hashpw(old_pssw.encode('utf-8'), self.target.salt) != self.target.hash:
             raise ValueError('Contraseña incorrecta')
 
-        new_salt = bcrypt.gensalt()
-        new_hash = bcrypt.hashpw(new_pssw.encode('utf-8'), new_salt)
-        UserDao.update_password(self.target.user_id, new_salt, new_hash)
+        self.target.salt = bcrypt.gensalt()
+        self.target.hash = bcrypt.hashpw(new_pssw.encode('utf-8'), self.target.salt)
+        UserDao.update(self.target)
