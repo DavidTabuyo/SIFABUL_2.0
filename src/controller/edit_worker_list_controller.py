@@ -46,7 +46,7 @@ class EditWorkerListController(QMainWindow):
             self.view.showError(e)
     
     def btn_delete_user_clicked(self):
-        UserDao.delete_User(self.view.get_selected_worker())
+        UserDao.delete_user(self.view.get_selected_worker())
         self.close()
         
     

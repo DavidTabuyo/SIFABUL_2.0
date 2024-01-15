@@ -25,15 +25,3 @@ class NotificationDao:
                 INSERT INTO notifications (title, description, datetime) VALUES
                     (?, ?, ?);
             ''', (title, description, datetime))
-
-    @staticmethod
-    def clean_notifications():
-        with db_connection_service() as conn:
-            conn.querry('''
-                DELETE FROM notifications
-                WHERE NOT EXISTS (
-                    SELECT 1
-                    FROM workers_notifications
-                    WHERE workers_notifications.notification_id = notifications.notification_id
-                )
-            ''', ())
