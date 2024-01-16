@@ -1,7 +1,9 @@
 from PyQt5.QtWidgets import QMainWindow
 import bcrypt
 from controller.main_controller import MainController
-from model.dao.user_dao import UserDao
+from model.dao.admin_dao import AdminDao
+from model.dao.factory_dao import FactoryDao
+from model.dao.worker_dao import WorkerDao
 from view.login_ui import loginUI
 
 
@@ -30,9 +32,9 @@ class LoginController(QMainWindow):
     def login(self, user_id: str, password: str) -> str:
 
         # Check if exists
-        if UserDao.is_worker(user_id):
+        if WorkerDao.is_worker(user_id):
             type = 'worker'
-        elif UserDao.is_admin(user_id):
+        elif AdminDao.is_admin(user_id):
             type = 'admin'
         else:
             raise LookupError('Usuario no encontrado')
@@ -44,5 +46,5 @@ class LoginController(QMainWindow):
         return type
 
     def check_password(self, user_id: str, password: str) -> bool:
-        user = UserDao.get_user(user_id)
+        user = FactoryDao.get_user(user_id)
         return user.hash == bcrypt.hashpw(password.encode('utf-8'), user.salt)

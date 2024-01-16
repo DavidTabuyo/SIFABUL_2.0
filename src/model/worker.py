@@ -6,6 +6,5 @@ class Worker:
         self.hash = hash
         self.admin_id = admin_id
 
-    def get_output_for_list(self) ->str:
+    def get_output_for_list(self) -> str:
         return self.worker_id+": "+self.name
-    

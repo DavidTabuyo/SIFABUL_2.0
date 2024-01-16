@@ -156,7 +156,7 @@ class ChangePasswordUi(object):
             _translate("MainWindow", " Contraseña Nueva"))
         self.accept_btn.setText(_translate("MainWindow", "Aceptar"))
         self.old_password_imp.setPlaceholderText(
-            _translate("MainWindow", " Contraseña Vieja"))
+            _translate("MainWindow", " Contraseña Antigua"))
         self.cancel_btn.setText(_translate("MainWindow", "Cancelar"))
 
     """START OWN CODE 

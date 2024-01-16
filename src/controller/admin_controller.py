@@ -1,10 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import QtWidgets
 from controller.main_controller import MainController
-from model.dao.admin_dao import AdminDao
-from model.dao.notification_dao import NotificationDao
-from model.dao.notification_worker_dao import NotificationWorkerDao
-from model.dao.week_dao import WeekDao
+from model.dao.factory_dao import FactoryDao
 from model.notification import Notification
 from model.worker import Worker
 from view.admin_ui import AdminUi
@@ -28,7 +25,7 @@ class AdminController(QMainWindow):
         self.view.close_btn.clicked.connect(self.close_btn_clicked)
 
         # model
-        self.admin = AdminDao.get_admin(username)
+        self.admin = FactoryDao.get_admin(username)
 
         # update view
         self.update_notifications()
@@ -44,7 +41,7 @@ class AdminController(QMainWindow):
         self.view.clear_layout(self.view.notifications_layout)
         notList = self.get_notifications()
         for notification in notList:
-            references = NotificationWorkerDao.get_notifications_by_notification(
+            references = FactoryDao.get_notifications_by_notification(
                 notification.notification_id)
             notification.is_all_seen = all(
                 reference.seen for reference in references)
@@ -74,10 +71,10 @@ class AdminController(QMainWindow):
         self.update_worker_list()
 
     def get_workers(self) -> list[Worker]:
-        return AdminDao.get_workers(self.admin.admin_id)
+        return FactoryDao.get_workers(self.admin.admin_id)
 
     def get_notifications(self) -> list[Notification]:
-        return NotificationDao.get_notifications(self.admin.admin_id)
+        return FactoryDao.get_notifications(self.admin.admin_id)
 
     def show_workers(self, workerList: list[Worker]):
         for worker in workerList:
@@ -95,7 +92,7 @@ class AdminController(QMainWindow):
                 lambda _, w=worker: self.button_show_summary(w))
 
     def button_show_summary(self, worker: Worker):
-        weeks = WeekDao.get_weeks(worker.worker_id)
+        weeks = FactoryDao.get_weeks(worker.worker_id)
         self.view.show_summary(weeks)
 
     def close_btn_clicked(self):

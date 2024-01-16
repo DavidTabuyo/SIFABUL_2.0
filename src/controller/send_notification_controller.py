@@ -1,9 +1,9 @@
 from PyQt5.QtWidgets import QDialog
 from controller.main_controller import MainController
-from model.dao.admin_dao import AdminDao
+from model.dao.factory_dao import FactoryDao
 from model.dao.notification_dao import NotificationDao
 from model.dao.notification_worker_dao import NotificationWorkerDao
-from model.dao.user_dao import UserDao
+from model.dao.worker_dao import WorkerDao
 from services.current_time import get_current_time
 from view.send_notification_ui import SendNotificationUi
 
@@ -20,7 +20,7 @@ class SendNotificationController(QDialog):
         self.view.send_btn.clicked.connect(self.send_btn_clicked)
 
         # model
-        self.admin = AdminDao.get_admin(admin_id)
+        self.admin = FactoryDao.get_admin(admin_id)
 
     def cancel_btn_clicked(self):
         self.close()
@@ -45,11 +45,11 @@ class SendNotificationController(QDialog):
             raise ValueError('No has seleccionado ningún destinatario')
 
         for worker_id in selected_workers:
-            if not UserDao.is_worker(worker_id):
+            if not WorkerDao.is_worker(worker_id):
                 raise TypeError(
                     'No existe un trabajdor con el nombre de usuario: ', worker_id)
 
-        notification_id = NotificationDao.get_notifications(
+        notification_id = FactoryDao.get_notifications(
             self.admin.admin_id)[-1].notification_id+1
         NotificationDao.add_notification(self.view.title_edit.text(
         ), self.view.body_edit.text(), get_current_time()[3])

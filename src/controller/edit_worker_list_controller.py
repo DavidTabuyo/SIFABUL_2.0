@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QDialog
 from controller.main_controller import MainController
-from model.dao.admin_dao import AdminDao
+from model.dao.factory_dao import FactoryDao
 from model.dao.user_dao import UserDao
 from model.worker import Worker
 from view.edit_worker_list_ui import EditWorkerListUi
@@ -21,13 +21,13 @@ class EditWorkerListController(QDialog):
             self.btn_change_password_clicked)
 
         # model
-        self.admin = AdminDao.get_admin(admin_id)
+        self.admin = FactoryDao.get_admin(admin_id)
 
         # setup view
         self.view.show_workers(self.get_workers())
 
     def get_workers(self) -> list[Worker]:
-        return AdminDao.get_workers(self.admin.admin_id)
+        return FactoryDao.get_workers(self.admin.admin_id)
 
     def btn_cancel_clicked(self):
         self.close()
@@ -51,6 +51,6 @@ class EditWorkerListController(QDialog):
             'changepassword', self.admin.admin_id, self.view.get_selected_worker())
 
     def change_name(self):
-        user = UserDao.get_user(self.view.get_selected_worker())
+        user = FactoryDao.get_user(self.view.get_selected_worker())
         user.name = self.view.username_le.text()
         UserDao.update(user)

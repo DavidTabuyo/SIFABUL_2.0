@@ -4,14 +4,14 @@ class Week:
         self.monday = monday
         self.total = total
 
-    def is_above_threshold(self)->bool:
-        if self.total<10:
+    def is_above_threshold(self) -> bool:
+        if self.total < 10:
             return True
         return False
-    
-    def get_total_hours(self)->float:
+
+    def get_total_hours(self) -> float:
         return self.total/3600
-    
+
     def get_formatted_total(self):
         hours, remainder = divmod(self.total, 3600)
         minutes = remainder // 60

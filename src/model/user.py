@@ -5,5 +5,5 @@ class User:
         self.salt = salt
         self.hash = hash
 
-    def getId(self)->str:
+    def getId(self) -> str:
         return self.user_id

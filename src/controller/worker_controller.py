@@ -1,9 +1,10 @@
 from PyQt5.QtWidgets import QMainWindow
 import arrow
+from controller.change_password_controller import ChangePasswordController
 from controller.main_controller import MainController
 from model.dao.check_dao import CheckDao
+from model.dao.factory_dao import FactoryDao
 from model.dao.week_dao import WeekDao
-from model.dao.worker_dao import WorkerDao
 from model.dao.notification_worker_dao import NotificationWorkerDao
 from services.current_time import get_current_time
 from view.worker_ui import WorkerUi
@@ -13,6 +14,7 @@ class WorkerController(QMainWindow):
     def __init__(self, username: str) -> None:
         super().__init__()
         self.main_controller = MainController.get_instance()
+        self.dialog=None
 
         # view
         self.view = WorkerUi()
@@ -26,7 +28,7 @@ class WorkerController(QMainWindow):
         self.view.delete_btn.clicked.connect(self.delete_btn_clicked)
 
         # model
-        self.worker = WorkerDao.get_worker(username)
+        self.worker = FactoryDao.get_worker(username)
 
         # update view
         self.update_checks()
@@ -35,13 +37,13 @@ class WorkerController(QMainWindow):
 
     def update_checks(self):
         self.view.clear_layout(self.view.layoutFichajes)
-        checks = WorkerDao.get_today_checks(
+        checks = FactoryDao.get_today_checks(
             self.worker.worker_id, get_current_time()[1])
         self.view.addChecks(checks)
 
     def update_notifications(self):
         self.view.clear_layout(self.view.notifications_layout)
-        notifications = [notification for notification in NotificationWorkerDao.get_notifications_by_worker(
+        notifications = [notification for notification in FactoryDao.get_notifications_by_worker(
             self.worker.worker_id) if not notification.seen]
         if notifications:
             self.view.addNotifications(notifications)
@@ -58,12 +60,13 @@ class WorkerController(QMainWindow):
             self.view.showError(e)
 
     def btnResumen_clicked(self):
-        weeks = WeekDao.get_weeks(self.worker.worker_id)
+        weeks = FactoryDao.get_weeks(self.worker.worker_id)
         self.view.show_summary(weeks)
 
     def btnChangePassword_clicked(self):
-        self.main_controller.change_controller(
-            'changepassword', self.worker.worker_id, self.worker.worker_id)
+        #we call change password controller because its a dialog
+        self.dialog= ChangePasswordController(self.worker.worker_id,self.worker.worker_id)
+        self.dialog.exec()
 
     def refresh_btn_clicked(self):
         self.update_notifications()
@@ -73,7 +76,7 @@ class WorkerController(QMainWindow):
         monday, date, time, _ = get_current_time()
 
         # get last check
-        last_check = WorkerDao.get_last_today_check(
+        last_check = FactoryDao.get_last_today_check(
             self.worker.worker_id, date)
         if last_check and time[3:5] == last_check.time[3:5]:
             raise LookupError('Ya has fichado')
@@ -88,7 +91,7 @@ class WorkerController(QMainWindow):
             return
 
         # Cupdate week and calculate check time
-        week = WeekDao.get_week(self.worker.worker_id, monday)
+        week = FactoryDao.get_week(self.worker.worker_id, monday)
         week_total = week.total if week else 0
 
         entry = arrow.get(last_check.time, 'HH:mm:ss')

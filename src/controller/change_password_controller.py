@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QDialog
 import bcrypt
 from controller.main_controller import MainController
+from model.dao.factory_dao import FactoryDao
 from model.dao.user_dao import UserDao
 
 from view.change_password_ui import ChangePasswordUi
@@ -18,8 +19,8 @@ class ChangePasswordController(QDialog):
         self.view.accept_btn.clicked.connect(self.accept_btn_clicked)
 
         # model
-        self.changer = UserDao.get_user(changer_id)
-        self.target = UserDao.get_user(target_id)
+        self.changer = FactoryDao.get_user(changer_id)
+        self.target = FactoryDao.get_user(target_id)
 
     def cancel_btn_clicked(self):
         self.close()

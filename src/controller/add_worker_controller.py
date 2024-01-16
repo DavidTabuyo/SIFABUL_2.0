@@ -2,7 +2,8 @@ from PyQt5.QtWidgets import QDialog
 import bcrypt
 from controller.main_controller import MainController
 from model.dao.admin_dao import AdminDao
-from model.dao.user_dao import UserDao
+from model.dao.factory_dao import FactoryDao
+from model.dao.worker_dao import WorkerDao
 from model.worker import Worker
 from view.add_worker_ui import AddWorkerUi
 
@@ -20,7 +21,7 @@ class AddWorkerController(QDialog):
         self.view.btm_accept.clicked.connect(self.btn_accept_clicked)
 
         # model
-        self.admin = AdminDao.get_admin(admin_id)
+        self.admin = FactoryDao.get_admin(admin_id)
 
     def btn_cancel_clicked(self):
         self.close()
@@ -42,7 +43,7 @@ class AddWorkerController(QDialog):
             self.view.showError(e)
 
     def check_worker_exist(self):
-        return UserDao.is_worker(self.view.name_le.text())
+        return WorkerDao.is_worker(self.view.name_le.text())
 
     def check_passwords(self):
         if self.view.password_le.text() != self.view.confirm_password_le.text():
