@@ -1,14 +1,15 @@
 from PyQt5.QtWidgets import QDialog
 import bcrypt
+from controller.main_controller import MainController
 from model.dao.user_dao import UserDao
 
 from view.change_password_ui import ChangePasswordUi
 
 
 class ChangePasswordController(QDialog):
-    def __init__(self, main_controller, changer_id: str, target_id: str) -> None:
+    def __init__(self, changer_id: str, target_id: str) -> None:
         super().__init__()
-        self.main_controller = main_controller
+        self.main_controller = MainController.get_instance()
 
         # view
         self.view = ChangePasswordUi()
@@ -37,5 +38,6 @@ class ChangePasswordController(QDialog):
             raise ValueError('Contraseña incorrecta')
 
         self.target.salt = bcrypt.gensalt()
-        self.target.hash = bcrypt.hashpw(new_pssw.encode('utf-8'), self.target.salt)
+        self.target.hash = bcrypt.hashpw(
+            new_pssw.encode('utf-8'), self.target.salt)
         UserDao.update(self.target)

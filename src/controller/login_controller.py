@@ -1,13 +1,15 @@
 from PyQt5.QtWidgets import QMainWindow
 import bcrypt
+from controller.main_controller import MainController
 from model.dao.user_dao import UserDao
 from view.login_ui import loginUI
 
+
 class LoginController(QMainWindow):
-    def __init__(self, main_controller) -> None:
+    def __init__(self) -> None:
         super().__init__()
-        self.main_controller = main_controller
-        #view
+        self.main_controller = MainController.get_instance()
+        # view
         self.view = loginUI()
         self.view.setupUi(self)
         self.view.BotonOk.clicked.connect(self.BotonOk_clicked)
@@ -17,14 +19,14 @@ class LoginController(QMainWindow):
     def BotonOk_clicked(self):
         # check if correct
         try:
-            self.main_controller.change_controller(self.login(self.view.UserName.text(), self.view.Password.text()),self.view.UserName.text())
+            self.main_controller.change_controller(self.login(
+                self.view.UserName.text(), self.view.Password.text()), self.view.UserName.text())
         except (LookupError, ValueError) as e:
             self.view.showError(e)
-        
+
     def btn_cancel_clicked(self):
         self.close()
-            
-    
+
     def login(self, user_id: str, password: str) -> str:
 
         # Check if exists
@@ -41,11 +43,6 @@ class LoginController(QMainWindow):
 
         return type
 
-
     def check_password(self, user_id: str, password: str) -> bool:
         user = UserDao.get_user(user_id)
         return user.hash == bcrypt.hashpw(password.encode('utf-8'), user.salt)
-
-            
-        
-    

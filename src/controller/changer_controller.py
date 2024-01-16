@@ -10,7 +10,7 @@ from controller.worker_controller import WorkerController
 
 class ChangerController:
     CONTROLLERS = {
-        'login': LoginController,      
+        'login': LoginController,
         'admin': AdminController,
         'worker': WorkerController,
         'changepassword': ChangePasswordController,
@@ -18,12 +18,12 @@ class ChangerController:
         'sendnotification': SendNotificationController,
         'addworker': AddWorkerController
     }
-    
+
     def __init__(self) -> None:
         self.current_controller = None
-        
+
     def controller_changer(self, new_controler_name, *args):
-        self.current_controller = self.CONTROLLERS[new_controler_name](self, *args)
+        self.current_controller = self.CONTROLLERS[new_controler_name](*args)
         if isinstance(self.current_controller, QMainWindow):
             self.current_controller.show()
         elif isinstance(self.current_controller, QDialog):
